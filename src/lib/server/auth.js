@@ -122,7 +122,7 @@ export async function getDiscordUser(event) {
 	}
 
 	if (access_token) {
-		// If there is an access token, validate it against the Discord API
+		// If there is an access token, get the user info from the discord api
 		// This makes a request everytime a protected route is loaded, to check if the token in the cookies is a valid one.
 		const response = await fetch('https://discord.com/api/users/@me', {
 			headers: {
