@@ -1,7 +1,7 @@
 /**
  * @type {import('./$types').PageServerLoad}
  */
-export function load({ locals }) {
+export async function load({ locals }) {
 	return {
 		user: locals.user
 	};
