@@ -57,7 +57,7 @@
 								>
 									<i class="fas fa-award" />
 								</div>
-								<h6 class="text-xl font-semibold">Easy to understand summaries and rankings</h6>
+								<h6 class="text-xl font-semibold">Uncomplicated summaries and rankings</h6>
 								<p class="mt-2 mb-4 text-stone-500">
 									Total messages sent, time spent in voice channels, top activities in the server,
 									and more.
