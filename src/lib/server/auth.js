@@ -5,7 +5,8 @@ import {
 	DISCORD_REDIRECT_URI,
 	DISCORD_SCOPE,
 	RUNTIME_ENV,
-	PROD_DISCORD_REDIRECT_URI
+	PROD_DISCORD_REDIRECT_URI,
+	DISCORD_BOT_TOKEN
 } from '$env/static/private';
 
 /**
@@ -138,5 +139,55 @@ export async function getDiscordUser(event) {
 		}
 	}
 
+	return null;
+}
+
+/**
+ *
+ * @param {RequestEvent} event: the event object
+ * @returns {Object|null} the discord user object
+ */
+export async function getDiscordUserGuilds(event) {
+	const { cookies } = event;
+
+	let access_token = cookies.get('access_token');
+	let refresh_token = cookies.get('refresh_token');
+
+	// If there is no access token but there is a refresh token, refresh the access token
+	if (!access_token && refresh_token) {
+		await refreshDiscordAuthCookies(event);
+		access_token = cookies.get('access_token');
+		refresh_token = cookies.get('refresh_token');
+	}
+
+	if (access_token) {
+		// If there is an access token, get the user info from the discord api
+		// This makes a request everytime a protected route is loaded, to check if the token in the cookies is a valid one.
+		const response = await fetch('https://discord.com/api/users/@me/guilds', {
+			headers: {
+				Authorization: `Bearer ${access_token}`
+			}
+		});
+		const discord_user_guilds = await response.json();
+		if (discord_user_guilds) {
+			// user info should not be cached -- instead it's just passed to event.locals every time
+			// see above on making request to the discord api for all protected routes
+			return discord_user_guilds.map((guild) => guild.id);
+		}
+	}
+
+	return null;
+}
+
+export async function getGuildInfo(id) {
+	const response = await fetch(`https://discord.com/api/guilds/${id}?with_counts=true`, {
+		headers: {
+			Authorization: `Bot ${DISCORD_BOT_TOKEN}`
+		}
+	});
+	const guild = await response.json();
+	if (guild.id) {
+		return guild;
+	}
 	return null;
 }

@@ -9,6 +9,8 @@
 	}
 
 	let activeRoute = '/app/dashboard';
+
+	export let guilds;
 </script>
 
 <nav
@@ -35,7 +37,9 @@
 		<!-- User -->
 		<ul class="md:hidden items-center flex flex-wrap list-none">
 			<li class="inline-block relative">
-				<ProfilesDropdown />
+				{#if guilds && guilds.current}
+					<ProfilesDropdown {guilds} />
+				{/if}
 			</li>
 		</ul>
 		<!-- Collapse -->

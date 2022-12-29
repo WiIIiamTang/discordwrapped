@@ -1,62 +1,66 @@
 <script>
 	import CardStats from '$lib/Cards/CardStats.svelte';
+
+	export let guilds;
+	export let messages_stats;
+	export let voice_stats;
 </script>
 
 <!-- Header -->
-<div class="relative bg-red-500 md:pt-32 pb-32 pt-12">
+<div class="relative bg-indigo-300 md:pt-32 pb-32 pt-12">
 	<div class="px-4 md:px-10 mx-auto w-full">
 		<div>
 			<!-- Card stats -->
-			<div class="flex flex-wrap">
-				<div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-					<CardStats
-						statSubtitle="stat 1"
-						statTitle="350,897"
-						statArrow="up"
-						statPercent="3.48"
-						statPercentColor="text-emerald-500"
-						statDescripiron="Since last month"
-						statIconName="far fa-chart-bar"
-						statIconColor="bg-red-500"
-					/>
+			{#if guilds && guilds.current}
+				<div class="flex flex-wrap">
+					<div class="w-full lg:w-12/12 xl:w-4/12 px-4 flex space-y-5 flex-col">
+						<div>
+							<CardStats
+								statSubtitle="Members"
+								statTitle={guilds.current.member_count}
+								statIconColor="bg-red-500"
+								statIconName="fas fa-users"
+							/>
+						</div>
+						<div>
+							<CardStats
+								statSubtitle="Online users"
+								statTitle={guilds.current.presence_count}
+								statIconName="fas fa-network-wired"
+								statIconColor="bg-orange-500"
+							/>
+						</div>
+					</div>
+					{#if messages_stats}
+						<div class="w-full lg:w-12/12 xl:w-4/12 px-4 flex align-middle">
+							<CardStats
+								statSubtitle="Messages sent"
+								statTitle={messages_stats.count_by_channel._TOTAL}
+								statArrow="down"
+								statPercent="0"
+								statPercentColor="text-orange-500"
+								statDescripiron="Since last month"
+								statIconName="far fa-envelope"
+								statIconColor="bg-pink-500"
+							/>
+						</div>
+					{/if}
+					{#if voice_stats}
+						<div class="w-full lg:w-12/12 xl:w-4/12 px-4 flex align-middle">
+							<CardStats
+								statSubtitle="Hours in voice channels"
+								statTitle={Math.round(voice_stats.count_by_channel._TOTAL / 60)}
+								statArrow="up"
+								statPercent="0"
+								statPercentColor="text-emerald-500"
+								statDescripiron="Since last month"
+								statIconName="fas fa-microphone"
+								statIconColor="bg-emerald-500"
+							/>
+						</div>
+					{/if}
 				</div>
-				<div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-					<CardStats
-						statSubtitle="stat 2"
-						statTitle="2,356"
-						statArrow="down"
-						statPercent="3.48"
-						statPercentColor="text-red-500"
-						statDescripiron="Since last week"
-						statIconName="fas fa-chart-pie"
-						statIconColor="bg-orange-500"
-					/>
-				</div>
-				<div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-					<CardStats
-						statSubtitle="stat 3"
-						statTitle="924"
-						statArrow="down"
-						statPercent="1.10"
-						statPercentColor="text-orange-500"
-						statDescripiron="Since yesterday"
-						statIconName="fas fa-users"
-						statIconColor="bg-pink-500"
-					/>
-				</div>
-				<div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-					<CardStats
-						statSubtitle="stat 4"
-						statTitle="49,65%"
-						statArrow="up"
-						statPercent="12"
-						statPercentColor="text-emerald-500"
-						statDescripiron="Since last month"
-						statIconName="fas fa-percent"
-						statIconColor="bg-emerald-500"
-					/>
-				</div>
-			</div>
+			{/if}
 		</div>
 	</div>
 </div>

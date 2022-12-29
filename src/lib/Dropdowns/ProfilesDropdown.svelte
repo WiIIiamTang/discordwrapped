@@ -17,6 +17,8 @@
 			});
 		}
 	};
+
+	export let guilds;
 </script>
 
 <div>
@@ -24,7 +26,15 @@
 		<div class="items-center flex">
 			<span
 				class="w-12 h-12 text-sm text-white bg-slate-200 inline-flex items-center justify-center rounded-full"
-			/>
+			>
+				{#if guilds && guilds.current}
+					<img
+						src={guilds.current.icon}
+						alt="server icon for current guild"
+						class="w-12 h-12 rounded-full align-middle border-none shadow-lg"
+					/>
+				{/if}
+			</span>
 		</div>
 	</a>
 	<div
@@ -33,13 +43,23 @@
 			? 'block'
 			: 'hidden'}"
 	>
-		<a
-			href="#f"
-			on:click={(e) => e.preventDefault()}
-			class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
-		>
-			Server 1
-		</a>
+		{#if guilds && guilds.current}
+			<a
+				href="#guildlink"
+				on:click={(e) => e.preventDefault()}
+				class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+				>{guilds.current.name}
+			</a>
+		{/if}
+
+		{#each guilds.others as guild}
+			<a
+				href="#guildlink"
+				on:click={(e) => e.preventDefault()}
+				class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+				>{guild.name}
+			</a>
+		{/each}
 		<div class="h-0 my-2 border border-solid border-slate-100 flex justify-center" />
 		<form method="POST" action="/logout" class="flex justify-center">
 			<button

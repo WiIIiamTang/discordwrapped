@@ -1,6 +1,9 @@
 <script>
 	// core components
 	import ProfilesDropdown from '$lib/Dropdowns/ProfilesDropdown.svelte';
+
+	export let guilds;
+	export let since_date;
 </script>
 
 <!-- Navbar -->
@@ -11,10 +14,24 @@
 		class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
 	>
 		<!-- Brand -->
-		<p class="text-white text-sm uppercase hidden lg:inline-block font-semibold">Server:</p>
-
+		<p class="text-white text-sm uppercase hidden lg:inline-block font-semibold">
+			{#if guilds.current}
+				<span class="text-slate-700 font-bold"> Server: </span><span class="text-slate-700"
+					>{guilds.current.name}</span
+				>
+			{/if}
+		</p>
+		{#if since_date && since_date.date}
+			<p class="text-white text-sm uppercase hidden lg:inline-block font-semibold">
+				<span class="text-slate-700 font-bold">Tracking since: </span><span class="text-slate-700">
+					{since_date.date}</span
+				>
+			</p>
+		{/if}
 		<ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-			<ProfilesDropdown />
+			{#if guilds.current}
+				<ProfilesDropdown {guilds} />
+			{/if}
 		</ul>
 	</div>
 </nav>
