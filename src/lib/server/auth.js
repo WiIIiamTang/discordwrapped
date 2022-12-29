@@ -4,7 +4,8 @@ import {
 	DISCORD_CLIENT_SECRET,
 	DISCORD_REDIRECT_URI,
 	DISCORD_SCOPE,
-	RUNTIME_ENV
+	RUNTIME_ENV,
+	PROD_DISCORD_REDIRECT_URI
 } from '$env/static/private';
 
 /**
@@ -23,7 +24,7 @@ export async function getDiscordAuth(code, refresh) {
 				client_id: DISCORD_CLIENT_ID,
 				client_secret: DISCORD_CLIENT_SECRET,
 				grant_type: 'refresh_token',
-				redirect_uri: DISCORD_REDIRECT_URI,
+				redirect_uri: RUNTIME_ENV === 'PROD' ? PROD_DISCORD_REDIRECT_URI : DISCORD_REDIRECT_URI,
 				refresh_token: code,
 				scope: DISCORD_SCOPE
 		  }
@@ -31,7 +32,7 @@ export async function getDiscordAuth(code, refresh) {
 				client_id: DISCORD_CLIENT_ID,
 				client_secret: DISCORD_CLIENT_SECRET,
 				grant_type: 'authorization_code',
-				redirect_uri: DISCORD_REDIRECT_URI,
+				redirect_uri: RUNTIME_ENV === 'PROD' ? PROD_DISCORD_REDIRECT_URI : DISCORD_REDIRECT_URI,
 				code: code,
 				scope: DISCORD_SCOPE
 		  };
@@ -91,14 +92,14 @@ export async function setDiscordAuthCookies(data) {
 		path: '/',
 		expires: access_token_expires_in,
 		httpOnly: true,
-		sameSite: 'lax',
+		sameSite: 'lax', // needed for discord redirect
 		Secure: RUNTIME_ENV === 'PRODUCTION'
 	});
 	cookies.set('refresh_token', data.refresh_token, {
 		path: '/',
 		expires: refresh_token_expires_in,
 		httpOnly: true,
-		sameSite: 'lax',
+		sameSite: 'lax', // needed for discord redirect
 		secure: RUNTIME_ENV === 'PRODUCTION'
 	});
 }
