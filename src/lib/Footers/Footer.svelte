@@ -65,7 +65,7 @@
 							<li>
 								<a
 									class="text-stone-600 hover:text-stone-800 font-semibold block pb-2 text-sm"
-									href="https://github.com/WiIIiamTang"
+									href="https://github.com/WiIIiamTang/discordwrapped"
 								>
 									Github
 								</a>
