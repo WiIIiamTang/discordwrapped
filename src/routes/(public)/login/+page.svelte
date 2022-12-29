@@ -16,7 +16,7 @@
 					</div>
 					<div class="flex-auto px-4 lg:px-10 py-10 pt-0">
 						<div class="text-slate-500 text-center mb-3 font-bold">
-							<small>Click the link below to be redirected.</small>
+							<small>Click the button below to be redirected.</small>
 						</div>
 
 						<div class="text-center mt-6">

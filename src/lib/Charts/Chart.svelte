@@ -10,12 +10,20 @@
 		LineElement,
 		LinearScale,
 		PointElement,
-		CategoryScale
+		CategoryScale,
+		Filler
 	} from 'chart.js';
 
-	ChartJS.register(Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale);
-
-	console.log('Creating chart');
+	ChartJS.register(
+		Title,
+		Tooltip,
+		Legend,
+		LineElement,
+		LinearScale,
+		PointElement,
+		CategoryScale,
+		Filler
+	);
 </script>
 
 <Line {data} options={{ responsive: true }} />

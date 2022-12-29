@@ -1,8 +1,5 @@
 <script>
 	import Chart from '$lib/Charts/Chart.svelte';
-
-	export let data;
-	console.log('data from dashboard', data);
 </script>
 
 <div>

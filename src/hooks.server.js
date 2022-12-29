@@ -12,9 +12,6 @@ export async function handle({ event, resolve }) {
 		} else {
 			const member_allowlist = await getMemberAllowlist();
 			if (!member_allowlist.includes(event.locals.user.id)) {
-				console.log('MEMBER NOT IN IDS from handle hooks');
-				console.log(event.locals.user);
-				console.log(event.locals.user.id, 'not in allowlist');
 				throw redirect(302, '/unauthorized');
 			}
 		}

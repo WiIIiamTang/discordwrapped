@@ -1,8 +1,6 @@
 <script>
 	// core components
 	import ProfilesDropdown from '$lib/Dropdowns/ProfilesDropdown.svelte';
-	export let data;
-	console.log('data from appnavbar', data);
 </script>
 
 <!-- Navbar -->
@@ -16,7 +14,7 @@
 		<p class="text-white text-sm uppercase hidden lg:inline-block font-semibold">Server:</p>
 
 		<ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-			<ProfilesDropdown {data} />
+			<ProfilesDropdown />
 		</ul>
 	</div>
 </nav>

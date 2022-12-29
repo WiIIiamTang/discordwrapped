@@ -1,8 +1,5 @@
 <script>
 	import CardStats from '$lib/Cards/CardStats.svelte';
-
-	export let data;
-	console.log('got data for header stats:', data);
 </script>
 
 <!-- Header -->

@@ -223,11 +223,11 @@
 				<div class="flex flex-wrap mt-12 justify-center">
 					<div class="w-full lg:w-3/12 px-4 text-center">
 						<button
-							class="bg-indigo-300 text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+							class="bg-indigo-300 text-white active:bg-orange-600 font-bold uppercase text-base px-8 py-3 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 							type="button"
 							on:click={handleLoginClick}
 						>
-							<i class="fas fa-sign-in" /> Click to login with Discord
+							Click to login with Discord
 						</button>
 					</div>
 				</div>

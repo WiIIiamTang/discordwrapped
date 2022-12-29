@@ -17,9 +17,6 @@
 			});
 		}
 	};
-
-	export let data;
-	console.log('data from profilesdropdown', data);
 </script>
 
 <div>
