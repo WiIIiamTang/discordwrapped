@@ -8,14 +8,14 @@
 				>
 					<div class="rounded-t mb-0 px-6 py-6">
 						<div class="text-center mb-3">
-							<h6 class="text-slate-500 text-lg font-bold">Sign in with Discord</h6>
+							<h6 class="text-slate-700 text-lg font-bold">Sign in with Discord</h6>
 							<i class="fab fa-discord text-5xl text-slate-500" />
 						</div>
 
 						<hr class="mt-6 border-b-1 border-slate-300" />
 					</div>
 					<div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-						<div class="text-slate-400 text-center mb-3 font-bold">
+						<div class="text-slate-500 text-center mb-3 font-bold">
 							<small>Click the link below to be redirected.</small>
 						</div>
 
