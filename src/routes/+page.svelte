@@ -1,20 +1,10 @@
 <script>
 	import HomeNavbar from '$lib/Navbars/HomeNavbar.svelte';
 	import Footer from '$lib/Footers/Footer.svelte';
-	import { inject } from '@vercel/analytics';
-	import { onMount } from 'svelte';
-	import { PUBLIC_RUNTIME_ENV } from '$env/static/public';
 
 	function handleLoginClick() {
 		location.href = '/app';
 	}
-
-	onMount(() => {
-		inject({
-			mode: PUBLIC_RUNTIME_ENV === 'DEV' ? 'development' : 'production',
-			debug: PUBLIC_RUNTIME_ENV === 'DEV' ? true : false
-		});
-	});
 </script>
 
 <div>
