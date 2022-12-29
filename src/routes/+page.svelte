@@ -111,9 +111,10 @@
 						>
 							<i class="fas fa-user-friends text-xl" />
 						</div>
-						<h3 class="text-3xl mb-2 font-semibold leading-normal">Example 1: stats summary</h3>
+						<h3 class="text-3xl mb-2 font-semibold leading-normal">Easy to use dashboard</h3>
 						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-stone-600">
-							The online dashboard provides an overview of your server stats.
+							The online dashboard provides an overview of key metrics and customisable graphs,
+							separated into different categories.
 						</p>
 					</div>
 
@@ -121,11 +122,7 @@
 						<div
 							class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-400"
 						>
-							<img
-								alt="..."
-								src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80"
-								class="w-full align-middle rounded-t-lg"
-							/>
+							<img alt="..." src="/example1.png" class="w-full align-middle rounded-t-lg" />
 							<blockquote class="relative p-8 mb-4">
 								<svg
 									preserveAspectRatio="none"
@@ -181,10 +178,10 @@
 							>
 								<i class="fas fa-rocket text-xl" />
 							</div>
-							<h3 class="text-3xl font-semibold">Example 2: interaction network</h3>
+							<h3 class="text-3xl font-semibold">Build your community efficiently</h3>
 							<p class="mt-4 text-lg leading-relaxed text-stone-500">
-								Build a web of interactions between your users, based on their time spent together
-								in voice channels. Faciliate building your community and managing moderation.
+								Make use of our deeper analytics (like the network of interactions between your
+								users) to understand your community better and make moderation easier.
 							</p>
 						</div>
 					</div>
