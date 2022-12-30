@@ -265,6 +265,27 @@ export async function getGuildAllowlist() {
 	return guild_allowlist.document.ids;
 }
 
+export async function getAdmins() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'admins'
+			}
+		})
+	);
+
+	const admins = await res.json();
+
+	if (!admins.document) {
+		throw error(404, 'Admins not found');
+	}
+
+	return admins.document.ids;
+}
+
 export async function getMemberAllowlist() {
 	const res = await _findOne(
 		JSON.stringify({

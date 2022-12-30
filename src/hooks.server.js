@@ -1,10 +1,10 @@
 import { getDiscordUser, getDiscordUserGuilds } from '$lib/server/auth.js';
-import { getMemberAllowlist, getGuildAllowlist } from './lib/server/mongo.js';
-import { redirect } from '@sveltejs/kit';
+import { getMemberAllowlist, getGuildAllowlist, getAdmins } from './lib/server/mongo.js';
+import { redirect, error } from '@sveltejs/kit';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-	if (event.url.pathname.startsWith('/app')) {
+	if (event.url.pathname.startsWith('/app') || event.url.pathname.startsWith('/api/data')) {
 		event.locals.user = await getDiscordUser(event);
 		const guild_allowlist = await getGuildAllowlist();
 		event.locals.bot_guilds = guild_allowlist;
@@ -25,6 +25,15 @@ export async function handle({ event, resolve }) {
 		event.locals.user = null;
 		event.cookies.delete('access_token', { path: '/' });
 		event.cookies.delete('refresh_token', { path: '/' });
+	} else if (
+		event.url.pathname.startsWith('/api/admin') ||
+		event.url.pathname.startsWith('/manage')
+	) {
+		event.locals.user = await getDiscordUser(event);
+		const admins = await getAdmins();
+		if (!event.locals.user || !admins.includes(event.locals.user.id)) {
+			throw error(403, 'Unauthorized');
+		}
 	}
 
 	const response = await resolve(event);
