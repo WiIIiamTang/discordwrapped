@@ -47,13 +47,13 @@ export function processInteractions(data) {
 	graph_data.nodes = graph_data.nodes.map((d) => {
 		const percentile = (d.details.total_hours_spent - min_hours) / (max_hours - min_hours);
 		if (percentile < 0.1) {
-			d.group = 1;
+			d.group = 3;
 		} else if (percentile < 0.5) {
 			d.group = 0;
-		} else if (percentile < 0.9) {
+		} else if (percentile < 0.85) {
 			d.group = 2;
 		} else {
-			d.group = 3;
+			d.group = 1;
 		}
 		return d;
 	});

@@ -43,8 +43,8 @@
 			graph.links
 				.filter((link) => link.source == d.id || link.target == d.id)
 				.map((link) => link.value)
-				.reduce((a, b) => a + b, 0) / 18,
-			2
+				.reduce((a, b) => a + Math.sqrt(b), 0),
+			2.2
 		);
 		return Object.create(d);
 	});
@@ -98,10 +98,10 @@
 			)
 			.force('charge', d3.forceManyBody())
 			.force('center', d3.forceCenter(width / 2, height / 2))
-			// .force(
-			// 	'collision',
-			// 	d3.forceCollide().radius((d) => Math.sqrt(d.size) / 4)
-			// )
+			.force(
+				'collision',
+				d3.forceCollide().radius((d) => Math.cbrt(d.size))
+			)
 			.on('tick', simulationUpdate);
 
 		// title
@@ -154,9 +154,9 @@
 			context.strokeStyle = '#FFFFFF';
 			context.lineWidth =
 				Math.max(
-					((d.value - min_value_in_data) / (max_value_in_data - min_value_in_data)) * 1.87,
-					0.1
-				) * 2;
+					((d.value - min_value_in_data) / (max_value_in_data - min_value_in_data)) * 1.8,
+					0.05
+				) * 3;
 			context.stroke();
 			context.globalAlpha = 1;
 		});
