@@ -52,6 +52,12 @@
 				<li>
 					<a
 						class="lg:text-black lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+						href="/api_info">API</a
+					>
+				</li>
+				<li>
+					<a
+						class="lg:text-black lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
 						href="/app">App Dashboard</a
 					>
 				</li>

@@ -70,6 +70,14 @@
 									Github
 								</a>
 							</li>
+							<li>
+								<a
+									class="text-stone-600 hover:text-stone-800 font-semibold block pb-2 text-sm"
+									href="/api_info"
+								>
+									API
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
