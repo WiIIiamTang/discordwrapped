@@ -33,6 +33,21 @@
 							</p>
 						</div>
 					</li>
+					<li>
+						<div>
+							<h1 class="text-xl text-extrabold">
+								Why do I need to login with my Discord account?
+							</h1>
+							<p class="text-slate-700">
+								Your Discord account is only used to check your id against the list of allowed
+								users. We also need to check that you're in a server that is supported by the bot.
+							</p>
+							<p class="text-slate-700">
+								If you want to unauthorize this site from accessing your account at any point, you
+								can do so through User Settings > Authorized Apps on the official Discord app.
+							</p>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>

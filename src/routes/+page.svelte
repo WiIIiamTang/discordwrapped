@@ -165,11 +165,7 @@
 			<div class="container mx-auto px-4 pb-40">
 				<div class="items-center flex flex-wrap">
 					<div class="w-full md:w-4/12 ml-auto mr-auto px-4 max-h-full">
-						<img
-							alt="..."
-							class="max-w-full rounded-lg shadow-lg"
-							src="https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1474&q=80"
-						/>
+						<img alt="..." class="max-w-full rounded-lg shadow-lg" src="/example2.png" />
 					</div>
 					<div class="w-full md:w-5/12 ml-auto mr-auto px-4">
 						<div class="md:pr-12">

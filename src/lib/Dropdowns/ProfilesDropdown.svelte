@@ -43,11 +43,13 @@
 			? 'block'
 			: 'hidden'}"
 	>
+		<p class="py-2 px-4">Choose a guild</p>
+		<hr />
 		{#if guilds && guilds.current}
 			<a
 				href="#guildlink"
 				on:click={(e) => e.preventDefault()}
-				class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+				class="text-sm py-2 px-4 font-normal block h-full w-full whitespace-nowrap bg-transparent text-slate-700 hover:bg-slate-300"
 				>{guilds.current.name}
 			</a>
 		{/if}
@@ -60,10 +62,10 @@
 				>{guild.name}
 			</a>
 		{/each}
-		<div class="h-0 my-2 border border-solid border-slate-100 flex justify-center" />
+		<div class="h-0 border border-solid border-slate-100 flex justify-center" />
 		<form method="POST" action="/logout" class="flex justify-center">
 			<button
-				class="bg-indigo-300 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
+				class="bg-indigo-300 my-2 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
 				type="submit"
 			>
 				Logout

@@ -169,7 +169,7 @@ export async function getDiscordUserGuilds(event) {
 			}
 		});
 		const discord_user_guilds = await response.json();
-		if (discord_user_guilds) {
+		if (discord_user_guilds !== undefined && discord_user_guilds.length > 0) {
 			// user info should not be cached -- instead it's just passed to event.locals every time
 			// see above on making request to the discord api for all protected routes
 			return discord_user_guilds.map((guild) => guild.id);

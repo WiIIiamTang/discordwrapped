@@ -8,7 +8,11 @@
 		collapseShow = classes;
 	}
 
-	let activeRoute = '/app/dashboard';
+	let activeRoute = $page.url.pathname;
+
+	if (activeRoute === '/app') {
+		activeRoute = '/app/activities';
+	}
 
 	export let guilds;
 </script>
@@ -30,7 +34,7 @@
 		<!-- Brand -->
 		<a
 			class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-			href="/app/dashboard"
+			href="/app/activities"
 		>
 			DiscordWrapped
 		</a>
@@ -52,7 +56,7 @@
 					<div class="w-6/12">
 						<a
 							class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-							href="/app/dashboard"
+							href="/app/activities"
 						>
 							DiscordWrapped
 						</a>
@@ -82,20 +86,39 @@
 			<ul class="md:flex-col md:min-w-full flex flex-col list-none">
 				<li class="items-center">
 					<a
-						href="/app/dashboard"
-						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/dashboard'
+						href="/app/activities"
+						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/activities'
 							? 'text-red-500 hover:text-red-600'
 							: 'text-blueGray-700 hover:text-blueGray-500'}"
 						on:click={() => {
-							activeRoute = '/app/dashboard';
+							activeRoute = '/app/activities';
 						}}
 					>
 						<i
-							class="fas fa-tv mr-2 text-sm {activeRoute === '/app/dashboard'
+							class="fas fa-tv mr-2 text-sm {activeRoute === '/app/activities'
 								? 'opacity-75'
 								: 'text-blueGray-300'}"
 						/>
-						Dashboard
+						Activities
+					</a>
+				</li>
+
+				<li class="items-center">
+					<a
+						href="/app/interactions"
+						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/interactions'
+							? 'text-red-500 hover:text-red-600'
+							: 'text-blueGray-700 hover:text-blueGray-500'}"
+						on:click={() => {
+							activeRoute = '/app/interactions';
+						}}
+					>
+						<i
+							class="fas fa-globe mr-2 text-sm {activeRoute === '/app/interactions'
+								? 'opacity-75'
+								: 'text-blueGray-300'}"
+						/>
+						Interactions
 					</a>
 				</li>
 			</ul>

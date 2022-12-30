@@ -1,5 +1,16 @@
-import { getActivities, getMessages, getVoice } from '$lib/server/mongo.js';
-import { processActivities, ObjSortByTotal } from '$lib/server/stats.js';
+import {
+	getActivities,
+	getMessages,
+	getVoice,
+	getTrackingTime,
+	getInteractions,
+	getWaifu,
+	getGenshin,
+	getWolfram,
+	getOpenai,
+	getAudio
+} from '$lib/server/mongo.js';
+import { processActivities, ObjSortByTotal, processInteractions } from '$lib/server/stats.js';
 import { getGuildInfo } from '$lib/server/auth';
 
 /**
@@ -22,6 +33,13 @@ export async function load({ locals }) {
 		},
 		activities: await processActivities(await ObjSortByTotal(await getActivities())),
 		messages: await getMessages(),
-		voice: await getVoice()
+		voice: await getVoice(),
+		tracking_since: await getTrackingTime(),
+		interactions: await processInteractions(await getInteractions()),
+		waifu: await getWaifu(),
+		genshin: await getGenshin(),
+		wolfram: await getWolfram(),
+		openai: await getOpenai(),
+		audio: await getAudio()
 	};
 }

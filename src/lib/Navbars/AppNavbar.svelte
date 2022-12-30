@@ -21,10 +21,10 @@
 				>
 			{/if}
 		</p>
-		{#if since_date && since_date.date}
+		{#if since_date}
 			<p class="text-white text-sm uppercase hidden lg:inline-block font-semibold">
 				<span class="text-slate-700 font-bold">Tracking since: </span><span class="text-slate-700">
-					{since_date.date}</span
+					{since_date}</span
 				>
 			</p>
 		{/if}

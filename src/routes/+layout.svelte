@@ -4,6 +4,8 @@
 	import { inject } from '@vercel/analytics';
 	import { onMount } from 'svelte';
 	import { PUBLIC_RUNTIME_ENV } from '$env/static/public';
+	import { navigating } from '$app/stores';
+	import Loading from '$lib/Spinners/Loading.svelte';
 
 	onMount(() => {
 		inject({
@@ -13,4 +15,12 @@
 	});
 </script>
 
-<slot />
+{#if $navigating && $navigating.to.url.pathname.startsWith('/app') && !$navigating.from.url.pathname.startsWith('/app')}
+	<div
+		class="bg-neutral-200 w-full h-screen flex flex-col justify-center content-center items-center"
+	>
+		<Loading />
+	</div>
+{:else}
+	<slot />
+{/if}

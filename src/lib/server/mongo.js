@@ -13,6 +13,153 @@ async function _findOne(data) {
 	});
 }
 
+export async function getAudio() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'audio'
+			}
+		})
+	);
+
+	const audio = await res.json();
+
+	if (!audio.document) {
+		throw error(404, 'Audio not found');
+	}
+
+	return audio.document;
+}
+
+export async function getOpenai() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'openai'
+			}
+		})
+	);
+
+	const openai = await res.json();
+
+	if (!openai.document) {
+		throw error(404, 'OpenAI not found');
+	}
+
+	return openai.document;
+}
+
+export async function getWolfram() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'wolfram'
+			}
+		})
+	);
+
+	const wolfram = await res.json();
+
+	if (!wolfram.document) {
+		throw error(404, 'Wolfram not found');
+	}
+
+	return wolfram.document;
+}
+
+export async function getGenshin() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'genshin'
+			}
+		})
+	);
+
+	const genshin = await res.json();
+
+	if (!genshin.document) {
+		throw error(404, 'Genshin not found');
+	}
+
+	return genshin.document;
+}
+
+export async function getWaifu() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'waifu'
+			}
+		})
+	);
+
+	const waifu = await res.json();
+
+	if (!waifu.document) {
+		throw error(404, 'Waifu not found');
+	}
+
+	return waifu.document;
+}
+
+export async function getInteractions() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'interaction_voice'
+			}
+		})
+	);
+
+	const interactions = await res.json();
+
+	if (!interactions.document) {
+		throw error(404, 'Interactions not found');
+	}
+
+	return interactions.document.count_by_users.pairs;
+}
+
+export async function getTrackingTime() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'tracking_time'
+			}
+		})
+	);
+
+	const tracking_time = await res.json();
+
+	if (!tracking_time.document) {
+		throw error(404, 'Tracking time not found');
+	}
+
+	return tracking_time.document.tracking_since;
+}
+
 export async function getMessages() {
 	const res = await _findOne(
 		JSON.stringify({
