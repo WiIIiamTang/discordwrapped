@@ -14,3 +14,11 @@ export async function POST({ request }) {
 	const { id } = await request.json();
 	return json({ guilds: id, success: true });
 }
+
+/**
+ * @type {import('@sveltejs/kit').RequestHandler}
+ */
+export async function DELETE({ request }) {
+	const { id } = await request.json();
+	return json({ guilds: id, success: true });
+}
