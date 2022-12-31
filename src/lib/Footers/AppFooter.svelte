@@ -16,10 +16,10 @@
 			</div>
 			<div class="w-full md:w-8/12 px-4">
 				<ul class="flex flex-wrap list-none md:justify-end justify-center">
-					{#if data.date}
+					{#if data}
 						<li>
 							<p class="text-slate-400 text-sm block py-1 px-3">
-								diswrapped3-{data.date}
+								diswrapped-{data.sha}-{data.date}
 							</p>
 						</li>
 					{/if}

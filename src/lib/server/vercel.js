@@ -29,5 +29,5 @@ export async function getLatestDeploymentDate() {
 		.replaceAll('/', '.')
 		.replaceAll('-', '.');
 
-	return date;
+	return { date, sha: deployments.deployments[0].meta?.githubCommitSha.slice(0, 7) };
 }

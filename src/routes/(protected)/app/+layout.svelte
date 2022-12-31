@@ -34,7 +34,7 @@
 				<slot />
 			{/if}
 			{#if data.latestDeployment}
-				<AppFooter data={{ date: data.latestDeployment }} />
+				<AppFooter data={data.latestDeployment} />
 			{/if}
 		</div>
 	</div>
