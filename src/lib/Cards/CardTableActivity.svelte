@@ -260,8 +260,10 @@
 											class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-rose-400 via-purple-700 to-indigo-800"
 										/>
 										<div
-											style="transform: translateX(-{100 - rowdata.percent}%); width: {100 -
-												rowdata.percent}%;"
+											style="transform: translateX(-{Math.min(
+												99,
+												100 - rowdata.percent
+											)}%); width: {100 - rowdata.percent}%;"
 											class="z-20 bg-indigo-200 w-full"
 										/>
 									</div>
