@@ -2,7 +2,7 @@
 	import ActivityChart from '$lib/Charts/ActivityChart.svelte';
 	import ActivityPopularChart from '$lib/Charts/ActivityPopularChart.svelte';
 	import ActivityTrendsChart from '$lib/Charts/ActivityTrendsChart.svelte';
-	import CardTable from '$lib/Cards/CardTable.svelte';
+	import CardTableActivity from '$lib/Cards/CardTableActivity.svelte';
 	import {
 		Chart as ChartJS,
 		Title,
@@ -127,7 +127,7 @@
 			<div
 				class="relative flex flex-col min-w-0 break-words w-full shadow-lg rounded-t bg-zinc-400"
 			>
-				<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+				<div class="rounded-t mb-1 px-4 py-3 bg-transparent">
 					<div class="flex flex-wrap items-center">
 						<div class="relative w-full max-w-full flex-grow flex-1">
 							<h6 class="uppercase text-black-100 mb-1 text-xs font-semibold">Activities</h6>
@@ -136,7 +136,9 @@
 					</div>
 				</div>
 			</div>
-			<CardTable />
+			{#if data.table_activities}
+				<CardTableActivity data={data.table_activities} />
+			{/if}
 		</div>
 	</div>
 </div>

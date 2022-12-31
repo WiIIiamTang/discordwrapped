@@ -1,5 +1,8 @@
 <script>
+	import { onMount } from 'svelte';
+
 	export let color = 'dark';
+	export let data;
 
 	let sample_data = [
 		{
@@ -23,6 +26,42 @@
 		ascending: true
 	};
 
+	const full_data = Object.keys(data.data)
+		.map((activity) => {
+			return Object.keys(data.ranks[activity]).map((user) => {
+				const dataobj = {
+					activity: activity,
+					user: user,
+					hours: Math.round(data.data[activity][user] * 100) / 100,
+					rank: data.ranks[activity][user]['rank'],
+					percent: data.ranks[activity][user]['percent']
+				};
+				dataobj['searchterms'] = `${dataobj.activity.toLowerCase()} ${dataobj.user.toLowerCase()} ${
+					dataobj.hours
+				} ${dataobj.rank} ${dataobj.percent}`;
+				return dataobj;
+			});
+		})
+		.flat();
+
+	$: table_data = Object.keys(data.data)
+		.map((activity) => {
+			return Object.keys(data.ranks[activity]).map((user) => {
+				const dataobj = {
+					activity: activity,
+					user: user,
+					hours: Math.round(data.data[activity][user] * 100) / 100,
+					rank: data.ranks[activity][user]['rank'],
+					percent: data.ranks[activity][user]['percent']
+				};
+				dataobj['searchterms'] = `${dataobj.activity.toLowerCase()} ${dataobj.user.toLowerCase()} ${
+					dataobj.hours
+				} ${dataobj.rank} ${dataobj.percent}`;
+				return dataobj;
+			});
+		})
+		.flat();
+
 	$: sort = (column) => {
 		if (sortBy.col == column) {
 			sortBy.ascending = !sortBy.ascending;
@@ -36,31 +75,68 @@
 		let sort = (a, b) =>
 			a[column] < b[column] ? -1 * sortModifier : a[column] > b[column] ? 1 * sortModifier : 0;
 
-		sample_data = sample_data.sort(sort);
+		table_data = table_data.sort(sort);
 	};
+
+	$: filtertable = (query) => {
+		if (!query || query === '') {
+			table_data = full_data;
+			sortBy.ascending = !sortBy.ascending;
+			sort(sortBy.col);
+			return;
+		}
+
+		const searchterm = query.toLowerCase();
+		console.log('seraching for', searchterm);
+
+		table_data = full_data.filter((row) => {
+			return row.searchterms.includes(searchterm);
+		});
+		sortBy.ascending = !sortBy.ascending;
+		sort(sortBy.col);
+	};
+
+	let searchterm = '';
+	let timer;
+
+	const debounce = (term) => {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			filtertable(term);
+		}, 500);
+	};
+
+	onMount(() => {
+		sort('percent');
+	});
 </script>
 
 <div
-	class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded {color === 'light'
+	class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-b {color ===
+	'light'
 		? 'bg-white'
 		: 'bg-zinc-400 text-black'}"
 >
-	<!-- <div class="rounded-t mb-0 px-4 py-3 border-0">
+	<div class="rounded-t mb-0 px-4 py-3 border-0">
 		<div class="flex flex-wrap items-center">
 			<div class="relative w-full px-4 max-w-full flex-grow flex-1">
-				<h3 class="font-semibold text-lg {color === 'light' ? 'text-slate-700' : 'text-black'}">
-					few users
-				</h3>
+				<!-- Search bar -->
+				<input
+					type="text"
+					class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+					placeholder="Search"
+					bind:value={searchterm}
+					on:input={debounce(searchterm)}
+				/>
 			</div>
 		</div>
-	</div> -->
-	<div class="rounded-t mb-0 px-4 border-0" />
-	<div class="block w-full overflow-x-auto">
+	</div>
+	<div class="block w-full overflow-x-auto max-h-[400px] overflow-y-auto">
 		<table class="items-center w-full bg-transparent border-collapse">
 			<thead>
 				<tr>
 					<th
-						class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
+						class="px-6 select-none align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
 						'light'
 							? 'bg-slate-50 text-slate-500 border-slate-100'
 							: 'bg-zinc-400 text-black border-zinc-400'}"
@@ -76,7 +152,7 @@
 						<span class="ml-1">User</span>
 					</th>
 					<th
-						class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
+						class="px-6 select-none align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
 						'light'
 							? 'bg-slate-50 text-slate-500 border-slate-100'
 							: 'bg-zinc-400 text-black border-zinc-400'}"
@@ -92,7 +168,7 @@
 						<span class="ml-1">Activity</span>
 					</th>
 					<th
-						class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
+						class="px-6  select-none align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
 						'light'
 							? 'bg-slate-50 text-slate-500 border-slate-100'
 							: 'bg-zinc-400 text-black border-zinc-400'}"
@@ -108,7 +184,7 @@
 						<span class="ml-1">Hours</span>
 					</th>
 					<th
-						class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
+						class="px-6 select-none align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
 						'light'
 							? 'bg-slate-50 text-slate-500 border-slate-100'
 							: 'bg-zinc-400 text-black border-zinc-400'}"
@@ -144,7 +220,7 @@
 
 			<!-- table body data-->
 			<tbody>
-				{#each sample_data as rowdata}
+				{#each table_data as rowdata}
 					<tr>
 						<th
 							class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
@@ -180,8 +256,13 @@
 								<div class="relative w-full">
 									<div class="overflow-hidden h-2 text-xs flex rounded bg-indigo-200">
 										<div
-											style="width: {rowdata.percent}%;"
-											class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"
+											style="width:100%;"
+											class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-rose-400 via-purple-700 to-indigo-800"
+										/>
+										<div
+											style="transform: translateX(-{100 - rowdata.percent}%); width: {100 -
+												rowdata.percent}%;"
+											class="z-20 bg-indigo-200 w-full"
 										/>
 									</div>
 								</div>

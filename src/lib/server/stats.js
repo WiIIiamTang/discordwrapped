@@ -120,6 +120,36 @@ export function processActivitiesPopular(data) {
 	};
 }
 
+export function processActivitiesUserTable(data) {
+	// for each key, convert the user hours to a percentage of the total
+	const percents = Object.keys(data).reduce((acc, cur) => {
+		const _TOTAL = data[cur]._TOTAL;
+		acc[cur] = Object.keys(data[cur]).reduce((acc2, cur2) => {
+			if (cur2 !== '_TOTAL') {
+				acc2[cur2] = Math.round((data[cur][cur2] / _TOTAL) * 100);
+			}
+			return acc2;
+		}, {});
+		return acc;
+	}, {});
+
+	// assign ranks to each user based on percentage
+	const ranks = Object.keys(data).reduce((acc, cur) => {
+		acc[cur] = Object.keys(data[cur]).reduce((acc2, cur2) => {
+			if (cur2 !== '_TOTAL') {
+				acc2[cur2] = {
+					percent: percents[cur][cur2],
+					rank: Object.keys(percents[cur]).filter((d) => data[cur][d] > data[cur][cur2]).length + 1
+				};
+			}
+			return acc2;
+		}, {});
+		return acc;
+	}, {});
+
+	return { ranks, data };
+}
+
 export function processActivitiesTrends(data, archive_data) {
 	// get the difference between TOTALS for each activity
 	const diffs = {};
