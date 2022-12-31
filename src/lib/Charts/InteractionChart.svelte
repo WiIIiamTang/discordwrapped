@@ -56,6 +56,7 @@
 <Bar
 	data={get_interaction_data()}
 	options={{
+		indexAxis: 'y',
 		responsive: true,
 		plugins: {
 			legend: {

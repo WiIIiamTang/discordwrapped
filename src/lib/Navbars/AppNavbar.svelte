@@ -15,7 +15,7 @@
 	>
 		<!-- Brand -->
 		<p class="text-white text-sm uppercase hidden lg:inline-block font-semibold">
-			{#if guilds.current}
+			{#if guilds && guilds.current}
 				<span class="text-slate-700 font-bold"> Server: </span><span class="text-slate-700"
 					>{guilds.current.name}</span
 				>
@@ -29,7 +29,7 @@
 			</p>
 		{/if}
 		<ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-			{#if guilds.current}
+			{#if guilds && guilds.current}
 				<ProfilesDropdown {guilds} />
 			{/if}
 		</ul>

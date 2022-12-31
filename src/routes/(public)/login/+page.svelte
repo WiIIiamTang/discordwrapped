@@ -62,30 +62,30 @@
 							>
 								<!--header-->
 								<div
-									class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
+									class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
 								>
 									<h3 class="text-3xl font-semibold">Some things to double-check...</h3>
 								</div>
 								<!--body-->
 								<div class="relative p-6 flex-auto">
-									<p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+									<p class="my-4 text-slate-500 text-lg leading-relaxed">
 										If you're logging in with Discord, check that the domain starts with <code
 											>https://discord.com</code
 										>.
 									</p>
-									<p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+									<p class="my-4 text-slate-500 text-lg leading-relaxed">
 										Check that the external application is called "billbot". It should be active
 										since Sep 15, 2021. Verify that it will redirect you back to this website. These
 										are the permissions it will ask for:
 									</p>
-									<ul class="my-4 text-blueGray-500 text-lg leading-relaxed list-disc">
+									<ul class="my-4 text-slate-500 text-lg leading-relaxed list-disc">
 										<li class="mx-6">Username, avatar, banner</li>
 										<li class="mx-6">Know what servers you're in</li>
 									</ul>
 								</div>
 								<!--footer-->
 								<div
-									class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b"
+									class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b"
 								>
 									<button
 										class="bg-red-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"

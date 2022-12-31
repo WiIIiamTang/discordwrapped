@@ -14,7 +14,6 @@ async function _findOne(data) {
 }
 
 export async function getArchivedStats(date) {
-	console.log(date);
 	const res = await _findOne(
 		JSON.stringify({
 			collection: 'stats_archive',

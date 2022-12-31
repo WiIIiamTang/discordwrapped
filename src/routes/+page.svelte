@@ -2,8 +2,8 @@
 	import HomeNavbar from '$lib/Navbars/HomeNavbar.svelte';
 	import Footer from '$lib/Footers/Footer.svelte';
 
-	function handleLoginClick() {
-		location.href = '/app';
+	function handleDemoClick() {
+		alert('Demo is currently unavailable.');
 	}
 </script>
 
@@ -19,10 +19,31 @@
 			<div class="container relative mx-auto">
 				<div class="items-center flex flex-wrap">
 					<div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-						<div class="pr-12">
+						<div>
 							<h1 class="text-black font-semibold text-5xl">Discord Wrapped</h1>
 							<p class="mt-4 text-lg text-stone-800">Server stats and summaries.</p>
 						</div>
+					</div>
+				</div>
+				<div class="items-center flex mt-10 flex-row justify-center">
+					<div class="w-fit px-4 text-center">
+						<button
+							on:click={handleDemoClick}
+							class="bg-indigo-300 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-8 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+							type="button"
+						>
+							View a demo
+						</button>
+					</div>
+					<div class="w-fit px-4 text-center">
+						<a href="/app">
+							<button
+								class="bg-indigo-300 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-8 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+								type="button"
+							>
+								Login now
+							</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -216,13 +237,12 @@
 				</div>
 				<div class="flex flex-wrap mt-12 justify-center">
 					<div class="w-full lg:w-3/12 px-4 text-center">
-						<button
+						<a
+							href="/app"
 							class="bg-indigo-300 text-white active:bg-orange-600 font-bold uppercase text-base px-8 py-3 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-							type="button"
-							on:click={handleLoginClick}
 						>
-							Click to login with Discord
-						</button>
+							<button class="" type="button"> Click to login with Discord </button>
+						</a>
 					</div>
 				</div>
 			</div>

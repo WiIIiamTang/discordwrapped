@@ -1,6 +1,6 @@
 import { getDiscordUser, getDiscordUserGuilds } from '$lib/server/auth.js';
 import { getMemberAllowlist, getGuildAllowlist, getAdmins } from './lib/server/mongo.js';
-import { redirect, error } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
@@ -32,7 +32,7 @@ export async function handle({ event, resolve }) {
 		event.locals.user = await getDiscordUser(event);
 		const admins = await getAdmins();
 		if (!event.locals.user || !admins.includes(event.locals.user.id)) {
-			throw error(403, 'Unauthorized');
+			throw redirect(307, '/unauthorized_admin');
 		}
 	}
 

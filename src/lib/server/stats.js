@@ -93,13 +93,55 @@ export function processInteractions(data) {
 	return graph_data;
 }
 
-export async function ObjSortByTotal(o, limit = 20) {
+export async function ObjSortBy(o, limit = 20, key = '_TOTAL') {
 	const exceptions = await getActivitiesExceptions();
 	return Object.entries(o)
-		.sort(([, a], [, b]) => b._TOTAL - a._TOTAL)
+		.sort(([, a], [, b]) => (key ? b[key] - a[key] : 0))
 		.filter((d) => !exceptions.includes(d[0]))
 		.slice(0, limit)
 		.reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+}
+
+export function processActivitiesPopular(data) {
+	// this just counts how many users are in each activity, excluding the _TOTAL key
+	const labels = Object.keys(data);
+	const total_users = labels.map((label) => {
+		return Object.keys(data[label]).length - 1;
+	});
+	// sort by total users
+	const sorted_total_users = total_users.sort((a, b) => b - a);
+	const sorted_labels = labels.sort(
+		(a, b) => Object.keys(data[b]).length - Object.keys(data[a]).length
+	);
+
+	return {
+		labels: sorted_labels,
+		total_users: sorted_total_users
+	};
+}
+
+export function processActivitiesTrends(data, archive_data) {
+	// get the difference between TOTALS for each activity
+	const diffs = {};
+
+	Object.keys(data).forEach((label) => {
+		const current = data[label]._TOTAL;
+		const archive = archive_data.activity.count_by_users[label]
+			? archive_data.activity.count_by_users[label]._TOTAL
+			: 0;
+		diffs[label] = current - archive;
+	});
+
+	// take the top
+	const sorted = Object.entries(diffs)
+		.sort(([, a], [, b]) => b - a)
+		.slice(0, 5)
+		.reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+
+	return {
+		labels: Object.keys(sorted),
+		diffs: Object.values(sorted)
+	};
 }
 
 export function processActivities(data) {

@@ -8,17 +8,17 @@
 	export let voice_stats_week_ago;
 
 	// calcuate the percent difference between now and week ago for messages and voice
-	let percent_diff_messages =
-		((messages_stats.count_by_channel._TOTAL - messages_stats_week_ago.count_by_channel._TOTAL) /
-			messages_stats_week_ago.count_by_channel._TOTAL) *
-			100 -
-		100;
+	$: percent_diff_messages = messages_stats
+		? ((messages_stats.count_by_channel._TOTAL - messages_stats_week_ago.count_by_channel._TOTAL) /
+				messages_stats_week_ago.count_by_channel._TOTAL) *
+		  100
+		: 0;
 	percent_diff_messages = Math.round(percent_diff_messages * 100) / 100;
-	let percent_diff_voice =
-		((voice_stats.count_by_channel._TOTAL - voice_stats_week_ago.count_by_channel._TOTAL) /
-			voice_stats_week_ago.count_by_channel._TOTAL) *
-			100 -
-		100;
+	$: percent_diff_voice = voice_stats
+		? ((voice_stats.count_by_channel._TOTAL - voice_stats_week_ago.count_by_channel._TOTAL) /
+				voice_stats_week_ago.count_by_channel._TOTAL) *
+		  100
+		: 0;
 	percent_diff_voice = Math.round(percent_diff_voice * 100) / 100;
 
 	// TODO: show the percent difference in terms of the gains this week compared to the week before (so can show the red/green arrows).

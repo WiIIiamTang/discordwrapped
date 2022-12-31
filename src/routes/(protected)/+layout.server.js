@@ -13,11 +13,14 @@ import {
 } from '$lib/server/mongo.js';
 import {
 	processActivities,
-	ObjSortByTotal,
+	processActivitiesPopular,
+	processActivitiesTrends,
+	ObjSortBy,
 	processInteractions,
 	processBotInteractions
 } from '$lib/server/stats.js';
 import { getGuildInfo } from '$lib/server/auth';
+import { getLatestDeploymentDate } from '$lib/server/vercel';
 
 const pad = (n) => {
 	let str = '0' + n;
@@ -28,14 +31,33 @@ const pad = (n) => {
  * @type {import('./$types').PageServerLoad}
  */
 export async function load({ locals }) {
+	if (!locals.user) {
+		return {
+			error: 'Unauthorized'
+		};
+	}
+
 	const guild = await getGuildInfo(locals.bot_guilds[0]);
 
 	// for archived stats
 	const one_week_ago = new Date();
 	one_week_ago.setDate(one_week_ago.getDate() - 6);
+	const archive_week = await getArchivedStats(
+		one_week_ago.getFullYear() +
+			'-' +
+			pad(one_week_ago.getMonth() + 1) +
+			'-' +
+			pad(one_week_ago.getDate())
+	);
+
+	// for activities
+	const activities = await getActivities();
+	const activities_sorted_total = await ObjSortBy(activities);
+	const activities_non_sorted_100 = await ObjSortBy(activities, 100, false);
 
 	return {
 		user: locals.user,
+		latestDeployment: await getLatestDeploymentDate(),
 		bot_guilds: {
 			current: {
 				id: guild.id,
@@ -46,16 +68,12 @@ export async function load({ locals }) {
 			},
 			others: []
 		},
-		activities: await processActivities(await ObjSortByTotal(await getActivities())),
+		activities: processActivities(activities_sorted_total),
+		popular_activities: processActivitiesPopular(activities_non_sorted_100),
+		trends_activities: processActivitiesTrends(activities_non_sorted_100, archive_week),
 		messages: await getMessages(),
 		voice: await getVoice(),
-		archived_stats_week_ago: await getArchivedStats(
-			one_week_ago.getFullYear() +
-				'-' +
-				pad(one_week_ago.getMonth() + 1) +
-				'-' +
-				pad(one_week_ago.getDate())
-		),
+		archived_stats_week_ago: archive_week,
 		tracking_since: await getTrackingTime(),
 		interactions: await processInteractions(await getInteractions()),
 		botInteractions: processBotInteractions({

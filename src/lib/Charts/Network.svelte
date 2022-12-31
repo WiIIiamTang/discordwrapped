@@ -278,25 +278,25 @@
 				>
 					<!--header-->
 					<div
-						class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t"
+						class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
 					>
 						<h3 class="text-3xl font-semibold">Help</h3>
 					</div>
 					<!--body-->
 					<div class="relative p-6 flex-auto">
-						<p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+						<p class="my-4 text-slate-500 text-lg leading-relaxed">
 							Scroll to zoom in and out. Drag and drop on empty space to pan, drag and drop on a
 							node to move it. Hover over a node for more details. Members who have spent less than
 							an hour with others are not shown.
 						</p>
 						<br />
-						<p class="my-4 text-blueGray-500 text-lg leading-relaxed">
+						<p class="my-4 text-slate-500 text-lg leading-relaxed">
 							You might need to refresh the page if you resize your window to reset the chart.
 						</p>
 					</div>
 					<!--footer-->
 					<div
-						class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b"
+						class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b"
 					>
 						<button
 							class="bg-red-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"

@@ -33,7 +33,7 @@
 		</button>
 		<!-- Brand -->
 		<a
-			class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+			class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
 			href="/app/activities"
 		>
 			DiscordWrapped
@@ -55,7 +55,7 @@
 				<div class="flex flex-wrap">
 					<div class="w-6/12">
 						<a
-							class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+							class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
 							href="/app/activities"
 						>
 							DiscordWrapped
@@ -77,7 +77,7 @@
 			<hr class="my-4 md:min-w-full" />
 			<!-- Heading -->
 			<h6
-				class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+				class="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
 			>
 				Menu
 			</h6>
@@ -89,7 +89,7 @@
 						href="/app/activities"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/activities'
 							? 'text-red-500 hover:text-red-600'
-							: 'text-blueGray-700 hover:text-blueGray-500'}"
+							: 'text-slate-700 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/activities';
 						}}
@@ -97,7 +97,7 @@
 						<i
 							class="fas fa-tv mr-2 text-sm {activeRoute === '/app/activities'
 								? 'opacity-75'
-								: 'text-blueGray-300'}"
+								: 'text-slate-300'}"
 						/>
 						Activities
 					</a>
@@ -108,23 +108,126 @@
 						href="/app/interactions"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/interactions'
 							? 'text-red-500 hover:text-red-600'
-							: 'text-blueGray-700 hover:text-blueGray-500'}"
+							: 'text-slate-700 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/interactions';
 						}}
 					>
 						<i
-							class="fas fa-globe mr-2 text-sm {activeRoute === '/app/interactions'
+							class="fa-regular fa-map mr-2 text-sm {activeRoute === '/app/interactions'
 								? 'opacity-75'
-								: 'text-blueGray-300'}"
+								: 'text-slate-300'}"
 						/>
 						Interactions
+					</a>
+				</li>
+
+				<li class="items-center">
+					<a
+						href="/app/messages"
+						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/messages'
+							? 'text-red-500 hover:text-red-600'
+							: 'text-slate-700 hover:text-slate-500'}"
+						on:click={() => {
+							activeRoute = '/app/messages';
+						}}
+					>
+						<i
+							class="fa-solid fa-list-check mr-2 text-sm {activeRoute === '/app/messages'
+								? 'opacity-75'
+								: 'text-slate-300'}"
+						/>
+						Messages
+					</a>
+				</li>
+
+				<li class="items-center">
+					<a
+						href="/app/monitoring"
+						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/monitoring'
+							? 'text-red-500 hover:text-red-600'
+							: 'text-slate-700 hover:text-slate-500'}"
+						on:click={() => {
+							activeRoute = '/app/monitoring';
+						}}
+					>
+						<i
+							class="fa-solid fa-magnifying-glass-chart mr-2 text-sm {activeRoute ===
+							'/app/monitoring'
+								? 'opacity-75'
+								: 'text-slate-300'}"
+						/>
+						Monitoring
+					</a>
+				</li>
+
+				<li class="items-center">
+					<a
+						href="/app/users"
+						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/users'
+							? 'text-red-500 hover:text-red-600'
+							: 'text-slate-700 hover:text-slate-500'}"
+						on:click={() => {
+							activeRoute = '/app/users';
+						}}
+					>
+						<i
+							class="fa-solid fa-people-arrows mr-2 text-sm {activeRoute === '/app/users'
+								? 'opacity-75'
+								: 'text-slate-300'}"
+						/>
+						Users
+					</a>
+				</li>
+
+				<li class="items-center">
+					<a
+						href="/app/settings"
+						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/settings'
+							? 'text-red-500 hover:text-red-600'
+							: 'text-slate-700 hover:text-slate-500'}"
+						on:click={() => {
+							activeRoute = '/app/settings';
+						}}
+					>
+						<i
+							class="fa-solid fa-gear mr-2 text-sm {activeRoute === '/app/settings'
+								? 'opacity-75'
+								: 'text-slate-300'}"
+						/>
+						Settings
 					</a>
 				</li>
 			</ul>
 
 			<!-- Divider -->
 			<hr class="my-4 md:min-w-full" />
+			<h6
+				class="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+			>
+				Tools
+			</h6>
+			<!-- Navigation -->
+
+			<ul class="md:flex-col md:min-w-full flex flex-col list-none justify-center">
+				<li class="items-center">
+					<a
+						href="/api_info"
+						class="text-xs uppercase py-3 font-bold block text-slate-700 hover:text-slate-500"
+					>
+						<i class="fa-solid fa-bookmark mr-2 ml-[1px] text-sm text-slate-300" /> API Docs
+					</a>
+				</li>
+
+				<li class="items-center">
+					<a
+						href="/manage"
+						class="text-xs uppercase py-3 font-bold block text-slate-700 hover:text-slate-500"
+					>
+						<i class="fa-solid fa-shield mr-2 ml-0 text-sm text-slate-300" />Admin Panel
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

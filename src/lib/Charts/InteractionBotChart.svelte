@@ -49,14 +49,15 @@
 				pointLabels: {
 					color: 'black',
 					font: {
-						size: 14
+						size: 12,
+						weight: 'bold'
 					}
 				},
 				ticks: {
 					color: 'black',
-					display: true,
+					display: false,
 					textStrokeColor: 'black',
-					backdropColor: 'rgba(255, 255, 255, 0.2)'
+					backdropColor: 'rgba(255, 255, 255, 0.1)'
 				},
 				max: Math.ceil(data_max / 5) * 5 + 5
 			}
