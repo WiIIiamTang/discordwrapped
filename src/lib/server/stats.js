@@ -4,6 +4,21 @@
  */
 import { getActivitiesExceptions } from '$lib/server/mongo.js';
 
+export function processBotInteractions(data) {
+	/**
+	 * data is an object containing the bot commands. so far,
+	 * genshin, waifu, wolfram, openai, and audio commands.
+	 */
+
+	// get the total number of commands for each category
+	const totals = Object.keys(data).reduce((acc, cur) => {
+		acc[cur] = data[cur].count_by_channel._TOTAL;
+		return acc;
+	}, {});
+
+	return totals;
+}
+
 export function processInteractions(data) {
 	const graph_data = { nodes: [], links: [] };
 

@@ -13,6 +13,28 @@ async function _findOne(data) {
 	});
 }
 
+export async function getArchivedStats(date) {
+	console.log(date);
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats_archive',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				date: date
+			}
+		})
+	);
+
+	const stats = await res.json();
+
+	if (!stats.document) {
+		throw error(404, 'Stats not found');
+	}
+
+	return stats.document;
+}
+
 export async function getAudio() {
 	const res = await _findOne(
 		JSON.stringify({

@@ -108,14 +108,8 @@
 				</div>
 				<div class="chartContainer h-[700px]">
 					<div class="relative w-full h-full chart flex justify-center">
-						{#if data.audio}
-							<InteractionBotChart
-								audio={data.audio}
-								genshin={data.genshin}
-								waifu={data.waifu}
-								openai={data.openai}
-								wolfram={data.wolfram}
-							/>
+						{#if data.botInteractions}
+							<InteractionBotChart botInteractions={data.botInteractions} />
 						{/if}
 					</div>
 				</div>

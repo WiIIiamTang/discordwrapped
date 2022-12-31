@@ -63,7 +63,7 @@
 	<div class="flex flex-wrap mt-4">
 		<div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
 			<div
-				class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-200"
+				class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-indigo-200"
 			>
 				<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
 					<div class="flex flex-wrap items-center">
@@ -74,7 +74,7 @@
 					</div>
 				</div>
 				<div class="p-4 flex-auto">
-					<div class="relative h-500-px">
+					<div class="relative h-fit">
 						<label>
 							<input type="number" bind:value={activity_limit} min="1" max={max_activity_limit} />
 
@@ -89,7 +89,7 @@
 		</div>
 		<div class="w-full xl:w-4/12 px-4">
 			<div
-				class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-200"
+				class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-sky-200"
 			>
 				<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
 					<div class="flex flex-wrap items-center">
@@ -100,7 +100,7 @@
 					</div>
 				</div>
 				<div class="p-4 flex-auto">
-					<div class="relative h-500-px">
+					<div class="relative h-fit">
 						<label>
 							<input type="number" bind:value={activity_limit} min="1" max={max_activity_limit} />
 
