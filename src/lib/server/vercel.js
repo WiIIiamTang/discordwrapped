@@ -26,7 +26,8 @@ export async function getLatestDeploymentDate() {
 			month: 'numeric',
 			day: 'numeric'
 		})
-		.replaceAll('/', '.');
+		.replaceAll('/', '.')
+		.replaceAll('-', '.');
 
 	return date;
 }
