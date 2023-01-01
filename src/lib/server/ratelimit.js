@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { REQ_LIMIT } from '$env/static/private';
 
-export async function ratelimit(redis, event) {
+export async function ratelimit(redis, event, limit = REQ_LIMIT) {
 	const ip = event.getClientAddress();
 	const get_res = await redis.get(ip);
 
@@ -15,7 +15,7 @@ export async function ratelimit(redis, event) {
 
 	const incr_res = await redis.incr(ip);
 
-	if (incr_res > Number(REQ_LIMIT)) {
+	if (incr_res > Number(limit)) {
 		throw error(429, 'Too many requests');
 	}
 
