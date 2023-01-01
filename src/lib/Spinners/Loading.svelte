@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { navigating } from '$app/stores';
 
 	export let color = '#32266d';
 	export let unit = 'px';
@@ -12,12 +13,14 @@
 	let fact = '';
 
 	onMount(async () => {
-		const res = await fetch('https://dog-api.kinduff.com/api/facts');
-		const data = await res.json();
-		if (!data.success) {
-			fact = '';
+		if ($navigating) {
+			const res = await fetch('https://dog-api.kinduff.com/api/facts');
+			const data = await res.json();
+			if (!data.success) {
+				fact = '';
+			}
+			fact = data.facts[0];
 		}
-		fact = data.facts[0];
 	});
 </script>
 
