@@ -30,19 +30,19 @@
 					</div>
 				</div>
 				<div class="items-center flex mt-10 flex-col gap-5 justify-center">
-					<div class="w-fit px-4 text-center">
+					<div class="w-full text-center">
 						<button
 							on:click={handleDemoClick}
-							class="bg-teal-100 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-8 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+							class="bg-teal-100 xl:w-1/5 lg:w-2/5 w-3/5 text-center text-slate-700 active:bg-slate-50 text-xs font-bold uppercase py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
 							type="button"
 						>
 							View demo
 						</button>
 					</div>
-					<div class="w-fit px-4 text-center">
+					<div class="w-full text-center">
 						<a href={login_link}>
 							<button
-								class="bg-indigo-300 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-8 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+								class="bg-indigo-300 xl:w-1/5 lg:w-2/5 w-3/5 text-center text-slate-700 active:bg-slate-50 text-xs font-bold uppercase py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
 								type="button"
 							>
 								{login_link === '/login' ? 'Login with Discord' : 'Open app'}
@@ -139,7 +139,7 @@
 						<h3 class="text-3xl mb-2 font-semibold leading-normal">Easy to use dashboard</h3>
 						<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-stone-600">
 							The online dashboard provides an overview of key metrics and customisable graphs,
-							separated into different categories.
+							separated into different categories. It is fully responsive and works on all devices.
 						</p>
 					</div>
 
@@ -192,7 +192,7 @@
 					<div class="w-full md:w-4/12 ml-auto mr-auto px-4 max-h-full">
 						<img alt="..." class="max-w-full rounded-lg shadow-lg" src="/example2.png" />
 					</div>
-					<div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+					<div class="w-full md:w-5/12 ml-auto mr-auto px-4 py-4">
 						<div class="md:pr-12">
 							<div
 								class="text-sky-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-indigo-200"
@@ -228,7 +228,7 @@
 				</svg>
 			</div>
 
-			<div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
+			<div class="container mx-auto px-4 lg:pt-24 lg:pb-64 py-4">
 				<div class="flex flex-wrap text-center justify-center">
 					<div class="w-full lg:w-6/12 px-4">
 						<h2 class="text-4xl font-semibold text-white">Get started</h2>

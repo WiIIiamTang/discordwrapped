@@ -24,7 +24,7 @@
 			<div class="flex-auto p-4">
 				<div class="flex flex-wrap">
 					<div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-						<h5 class="text-slate-400 uppercase font-bold text-xs">{act.label}</h5>
+						<h5 class="text-stone-700 uppercase font-bold text-xs">{act.label}</h5>
 						<span class="font-semibold text-sm text-slate-700">{act.diff} hours this past week</span
 						>
 					</div>
