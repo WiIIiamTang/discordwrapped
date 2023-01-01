@@ -6,6 +6,7 @@ import {
 	DISCORD_SCOPE,
 	RUNTIME_ENV,
 	PROD_DISCORD_REDIRECT_URI,
+	PREVIEW_DISCORD_REDIRECT_URI,
 	DISCORD_BOT_TOKEN
 } from '$env/static/private';
 
@@ -25,7 +26,12 @@ export async function getDiscordAuth(code, refresh) {
 				client_id: DISCORD_CLIENT_ID,
 				client_secret: DISCORD_CLIENT_SECRET,
 				grant_type: 'refresh_token',
-				redirect_uri: RUNTIME_ENV === 'PROD' ? PROD_DISCORD_REDIRECT_URI : DISCORD_REDIRECT_URI,
+				redirect_uri:
+					RUNTIME_ENV === 'PROD'
+						? PROD_DISCORD_REDIRECT_URI
+						: RUNTIME_ENV === 'DEV'
+						? DISCORD_REDIRECT_URI
+						: PREVIEW_DISCORD_REDIRECT_URI,
 				refresh_token: code,
 				scope: DISCORD_SCOPE
 		  }
@@ -33,7 +39,12 @@ export async function getDiscordAuth(code, refresh) {
 				client_id: DISCORD_CLIENT_ID,
 				client_secret: DISCORD_CLIENT_SECRET,
 				grant_type: 'authorization_code',
-				redirect_uri: RUNTIME_ENV === 'PROD' ? PROD_DISCORD_REDIRECT_URI : DISCORD_REDIRECT_URI,
+				redirect_uri:
+					RUNTIME_ENV === 'PROD'
+						? PROD_DISCORD_REDIRECT_URI
+						: RUNTIME_ENV === 'DEV'
+						? DISCORD_REDIRECT_URI
+						: PREVIEW_DISCORD_REDIRECT_URI,
 				code: code,
 				scope: DISCORD_SCOPE
 		  };
