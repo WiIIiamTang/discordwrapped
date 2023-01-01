@@ -2,6 +2,7 @@
 	import Network from '$lib/Charts/Network.svelte';
 	import InteractionChart from '$lib/Charts/InteractionChart.svelte';
 	import InteractionBotChart from '$lib/Charts/InteractionBotChart.svelte';
+	import InteractionVoiceChart from '$lib/Charts/InteractionVoiceChart.svelte';
 	import {
 		Chart as ChartJS,
 		Title,
@@ -153,10 +154,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="chartContainer h-fit">
+					<div class="chartContainer h-[400px]">
 						<div class="relative w-full h-full chart flex justify-center">
 							{#if data.botInteractions}
-								<InteractionBotChart botInteractions={data.botInteractions} />
+								<InteractionVoiceChart voicedata={data.voice} />
 							{/if}
 						</div>
 					</div>
