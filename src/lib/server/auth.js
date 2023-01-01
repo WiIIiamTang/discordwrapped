@@ -23,6 +23,8 @@ export async function getDiscordAuth(code, refresh) {
 
 	const body = refresh
 		? {
+				// TODO: the prod, dev and preview uris are stupid. just use one (DISCORD_REDIRECT_URI)
+				// and modify the value in the different environments...
 				client_id: DISCORD_CLIENT_ID,
 				client_secret: DISCORD_CLIENT_SECRET,
 				grant_type: 'refresh_token',
