@@ -54,6 +54,8 @@ export async function handle({ event, resolve }) {
 			if (!rate_res) {
 				throw error(429, 'rate limited');
 			}
+		} else if (event.url.pathname.startsWith('/api/data')) {
+			throw error(403, 'data api not available in preview');
 		}
 	}
 
