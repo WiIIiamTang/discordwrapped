@@ -88,7 +88,8 @@ export async function getUserPreferences(id) {
 			interactionnetwork: true,
 			interactionrelationshipchart: true,
 			interactionbot: true,
-			interactionvoice: true
+			interactionvoice: true,
+			experimental: false
 		};
 		return { userid: id, settings };
 	}
