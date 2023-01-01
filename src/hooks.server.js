@@ -3,6 +3,7 @@ import { getMemberAllowlist, getGuildAllowlist, getAdmins } from '$lib/server/mo
 import { ratelimit } from '$lib/server/ratelimit.js';
 import { redis } from '$lib/server/redis.js';
 import { redirect, error } from '@sveltejs/kit';
+import { RUNTIME_ENV } from '$env/static/private';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
@@ -48,9 +49,11 @@ export async function handle({ event, resolve }) {
 		event.url.pathname.startsWith('/api') &&
 		!event.url.pathname.startsWith('/api/discordcallback')
 	) {
-		const rate_res = await ratelimit(redis, event);
-		if (!rate_res) {
-			throw error(429, 'rate limited');
+		if (RUNTIME_ENV !== 'PREVIEW') {
+			const rate_res = await ratelimit(redis, event);
+			if (!rate_res) {
+				throw error(429, 'rate limited');
+			}
 		}
 	}
 
