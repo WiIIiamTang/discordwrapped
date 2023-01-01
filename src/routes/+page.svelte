@@ -36,7 +36,7 @@
 							class="bg-indigo-300 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-8 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
 							type="button"
 						>
-							View a demo
+							View demo
 						</button>
 					</div>
 					<div class="w-fit px-4 text-center">

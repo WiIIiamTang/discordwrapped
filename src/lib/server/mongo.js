@@ -13,6 +13,89 @@ async function _findOne(data) {
 	});
 }
 
+// async function _insertOne(data) {
+// 	return fetch(`${MONGO_API_ENDPOINT}/action/insertOne`, {
+// 		method: 'POST',
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			'api-key': MONGO_API_KEY,
+// 			'Access-Control-Request-Headers': '*'
+// 		},
+// 		body: data
+// 	});
+// }
+
+async function _updateOne(data) {
+	return fetch(`${MONGO_API_ENDPOINT}/action/updateOne`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'api-key': MONGO_API_KEY,
+			'Access-Control-Request-Headers': '*'
+		},
+		body: data
+	});
+}
+
+export async function updateUserPreferences(id, settings) {
+	const res = await _updateOne(
+		JSON.stringify({
+			collection: 'preferences',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				userid: id
+			},
+			update: {
+				$set: {
+					userid: id,
+					settings: settings
+				}
+			},
+			upsert: true
+		})
+	);
+
+	const response = await res.json();
+
+	if (!response.matchedCount && !response.upsertedId) {
+		return false;
+	}
+
+	return true;
+}
+
+export async function getUserPreferences(id) {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'preferences',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				userid: id
+			}
+		})
+	);
+
+	const user = await res.json();
+
+	if (!user.document) {
+		const settings = {
+			activityguildtotals: true,
+			activitypopular: true,
+			activitytrends: true,
+			activitytopusers: true,
+			interactionnetwork: true,
+			interactionrelationshipchart: true,
+			interactionbot: true,
+			interactionvoice: true
+		};
+		return { userid: id, settings };
+	}
+
+	return user.document;
+}
+
 export async function getArchivedStats(date) {
 	const res = await _findOne(
 		JSON.stringify({

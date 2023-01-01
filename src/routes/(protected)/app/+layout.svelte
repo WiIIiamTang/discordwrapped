@@ -24,11 +24,11 @@
 		<div class="px-4 md:px-10 mx-auto w-full -m-24">
 			{#if $navigating && $navigating.to.url.pathname.startsWith('/app') && $navigating.from.url.pathname.startsWith('/app')}
 				<div class="w-full h-full flex justify-center items-center overflow-hidden">
-					<LoadingApp duration={'1.5s'} />
-					<LoadingApp duration={'3s'} size={100} />
-					<LoadingApp duration={'2.5s'} size={70} />
-					<LoadingApp duration={'1.5s'} size={40} />
-					<LoadingApp duration={'4s'} size={80} />
+					<LoadingApp duration={'0.5s'} />
+					<LoadingApp duration={'2s'} size={100} />
+					<LoadingApp duration={'1.5s'} size={70} />
+					<LoadingApp duration={'0.5s'} size={40} />
+					<LoadingApp duration={'3s'} size={80} />
 				</div>
 			{:else}
 				<slot />

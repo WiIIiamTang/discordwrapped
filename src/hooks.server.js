@@ -15,8 +15,10 @@ export async function handle({ event, resolve }) {
 			const member_allowlist = await getMemberAllowlist();
 			const member_guilds = await getDiscordUserGuilds(event);
 			if (
-				!member_allowlist.includes(event.locals.user.id) ||
-				!member_guilds.some((guild) => guild_allowlist.includes(guild))
+				member_allowlist &&
+				member_guilds &&
+				(!member_allowlist.includes(event.locals.user.id) ||
+					!member_guilds.some((guild) => guild_allowlist.includes(guild)))
 			) {
 				throw redirect(302, '/unauthorized');
 			}

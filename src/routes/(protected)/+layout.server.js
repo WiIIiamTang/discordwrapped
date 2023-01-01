@@ -9,7 +9,8 @@ import {
 	getWolfram,
 	getOpenai,
 	getAudio,
-	getArchivedStats
+	getArchivedStats,
+	getUserPreferences
 } from '$lib/server/mongo.js';
 import {
 	processActivities,
@@ -59,6 +60,7 @@ export async function load({ locals }) {
 
 	return {
 		user: locals.user,
+		userPreferences: await getUserPreferences(locals.user.id),
 		latestDeployment:
 			RUNTIME_ENV === 'DEV' ? { date: 'local', sha: 'dev' } : await getLatestDeploymentDate(),
 		bot_guilds: {

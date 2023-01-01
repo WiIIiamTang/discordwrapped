@@ -87,7 +87,6 @@
 		}
 
 		const searchterm = query.toLowerCase();
-		console.log('seraching for', searchterm);
 
 		table_data = full_data.filter((row) => {
 			return row.searchterms.includes(searchterm);
