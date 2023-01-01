@@ -201,9 +201,8 @@
 							</div>
 							<h3 class="text-3xl font-semibold">Build your community efficiently</h3>
 							<p class="mt-4 text-lg leading-relaxed text-stone-500">
-								Make use of our deeper analytics (like the network of interactions between your
-								users) to understand your users better and make moderation easier. Identify key
-								players of your community.
+								Make use of our deeper analytics to understand your users better and make moderation
+								easier. Identify key players of your community.
 							</p>
 						</div>
 					</div>
