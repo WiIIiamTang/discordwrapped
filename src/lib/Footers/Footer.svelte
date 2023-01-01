@@ -34,9 +34,9 @@
 							<li>
 								<a
 									class="text-stone-600 hover:text-stone-800 font-semibold block pb-2 text-sm"
-									href="/app"
+									href="/contact"
 								>
-									Enter the app
+									Contact
 								</a>
 							</li>
 							<li>
