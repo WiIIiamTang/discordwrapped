@@ -1,6 +1,8 @@
 import { getDiscordUser, getDiscordUserGuilds } from '$lib/server/auth.js';
-import { getMemberAllowlist, getGuildAllowlist, getAdmins } from './lib/server/mongo.js';
-import { redirect } from '@sveltejs/kit';
+import { getMemberAllowlist, getGuildAllowlist, getAdmins } from '$lib/server/mongo.js';
+import { ratelimit } from '$lib/server/ratelimit.js';
+import { redis } from '$lib/server/redis.js';
+import { redirect, error } from '@sveltejs/kit';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
@@ -40,6 +42,16 @@ export async function handle({ event, resolve }) {
 
 	if (event.cookies.get('access_token') || event.cookies.get('refresh_token')) {
 		event.locals.hasCookies = true;
+	}
+
+	if (
+		event.url.pathname.startsWith('/api') &&
+		!event.url.pathname.startsWith('/api/discordcallback')
+	) {
+		const rate_res = await ratelimit(redis, event);
+		if (!rate_res) {
+			throw error(429, 'rate limited');
+		}
 	}
 
 	const response = await resolve(event);
