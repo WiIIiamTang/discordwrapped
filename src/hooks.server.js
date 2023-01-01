@@ -36,6 +36,10 @@ export async function handle({ event, resolve }) {
 		}
 	}
 
+	if (event.cookies.get('access_token') || event.cookies.get('refresh_token')) {
+		event.locals.hasCookies = true;
+	}
+
 	const response = await resolve(event);
 	return response;
 }

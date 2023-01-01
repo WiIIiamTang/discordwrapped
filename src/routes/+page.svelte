@@ -5,10 +5,14 @@
 	function handleDemoClick() {
 		alert('Demo is currently unavailable.');
 	}
+
+	export let data;
+
+	let login_link = data.login_link;
 </script>
 
 <div>
-	<HomeNavbar />
+	<HomeNavbar {login_link} />
 	<main>
 		<div
 			class="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75"
@@ -36,12 +40,12 @@
 						</button>
 					</div>
 					<div class="w-fit px-4 text-center">
-						<a href="/app">
+						<a href={login_link}>
 							<button
 								class="bg-indigo-300 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-8 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
 								type="button"
 							>
-								Login now
+								{login_link === '/login' ? 'Login with Discord' : 'Open app'}
 							</button>
 						</a>
 					</div>
@@ -238,10 +242,12 @@
 				<div class="flex flex-wrap mt-12 justify-center">
 					<div class="w-full lg:w-3/12 px-4 text-center">
 						<a
-							href="/app"
+							href={login_link}
 							class="bg-indigo-300 text-white active:bg-orange-600 font-bold uppercase text-base px-8 py-3 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 						>
-							<button class="" type="button"> Click to login with Discord </button>
+							<button class="" type="button">
+								{login_link === '/login' ? 'Click to login with Discord' : 'Open app'}
+							</button>
 						</a>
 					</div>
 				</div>

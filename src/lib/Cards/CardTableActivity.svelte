@@ -32,7 +32,7 @@
 				const dataobj = {
 					activity: activity,
 					user: user,
-					hours: Math.round(data.data[activity][user] * 100) / 100,
+					hours: Math.round((data.data[activity][user] / 60) * 100) / 100,
 					rank: data.ranks[activity][user]['rank'],
 					percent: data.ranks[activity][user]['percent']
 				};
@@ -50,7 +50,7 @@
 				const dataobj = {
 					activity: activity,
 					user: user,
-					hours: Math.round(data.data[activity][user] * 100) / 100,
+					hours: Math.round((data.data[activity][user] / 60) * 100) / 100,
 					rank: data.ranks[activity][user]['rank'],
 					percent: data.ranks[activity][user]['percent']
 				};
@@ -133,7 +133,7 @@
 	</div>
 	<div class="block w-full overflow-x-auto max-h-[400px] overflow-y-auto">
 		<table class="items-center w-full bg-transparent border-collapse">
-			<thead>
+			<thead class="sticky top-[-1px] z-30">
 				<tr>
 					<th
 						class="px-6 select-none align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color ===
@@ -243,9 +243,10 @@
 							class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
 						>
 							<div>
-								{#if rowdata.rank === 1}<i
-										class="fas fa-circle text-amber-300 mr-2"
-									/>{/if}{rowdata.rank}
+								{#if rowdata.rank === 1}<i class="fas fa-circle text-amber-300 mr-2" />
+								{:else if rowdata.rank === 2}<i class="fas fa-circle text-neutral-200 mr-2" />
+								{:else if rowdata.rank === 3}<i class="fas fa-circle text-stone-500 mr-2" />
+								{/if}{rowdata.rank}
 							</div>
 						</td>
 						<td
@@ -257,7 +258,7 @@
 									<div class="overflow-hidden h-2 text-xs flex rounded bg-indigo-200">
 										<div
 											style="width:100%;"
-											class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-rose-400 via-purple-700 to-indigo-800"
+											class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r to-rose-400 via-purple-700 from-indigo-800"
 										/>
 										<div
 											style="transform: translateX(-{Math.min(
