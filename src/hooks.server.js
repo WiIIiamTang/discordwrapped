@@ -36,7 +36,12 @@ export async function handle({ event, resolve }) {
 	) {
 		event.locals.user = await getDiscordUser(event);
 		const admins = await getAdmins();
-		if (!event.locals.user || !admins.includes(event.locals.user.id)) {
+		if (
+			!admins ||
+			!event.locals.user ||
+			!admins.includes(event.locals.user.id) ||
+			!event.cookies.get('access_token')
+		) {
 			throw redirect(307, '/unauthorized_admin');
 		}
 	}
@@ -45,16 +50,13 @@ export async function handle({ event, resolve }) {
 		event.locals.hasCookies = true;
 	}
 
-	if (
-		event.url.pathname.startsWith('/api') &&
-		!event.url.pathname.startsWith('/api/discordcallback')
-	) {
+	if (event.url.pathname.startsWith('/api/data')) {
 		if (RUNTIME_ENV !== 'PREVIEW') {
 			const rate_res = await ratelimit(redis, event);
 			if (!rate_res) {
 				throw error(429, 'rate limited');
 			}
-		} else if (event.url.pathname.startsWith('/api/data')) {
+		} else {
 			throw error(403, 'data api not available in preview');
 		}
 	}

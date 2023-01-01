@@ -2,20 +2,11 @@
 	export let data;
 	export let form;
 
-	let userin = false;
-	if (form && form.data) {
-		userin = form.data.success || false;
-	} else {
-		userin = false;
-	}
+	let userin = data;
 </script>
 
 {#if !userin}
-	<form action="?/tmpverify" method="POST">
-		<input type="text" name="username" placeholder="username" />
-		<input type="password" name="password" placeholder="password" />
-		<button type="submit">login</button>
-	</form>
+	<a href="/login">Login</a>
 {:else}
 	<div class="h-screen w-full bg-neutral-200">
 		<h1 class="text-4xl text-slate-700">admin menu</h1>
