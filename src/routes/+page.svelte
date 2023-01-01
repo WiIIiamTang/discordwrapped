@@ -78,7 +78,7 @@
 						>
 							<div class="px-4 py-5 flex-auto">
 								<div
-									class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400"
+									class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-amber-400"
 								>
 									<i class="fas fa-award" />
 								</div>
@@ -97,7 +97,7 @@
 						>
 							<div class="px-4 py-5 flex-auto">
 								<div
-									class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-sky-400"
+									class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-sky-300"
 								>
 									<i class="fas fa-fingerprint" />
 								</div>
@@ -115,7 +115,7 @@
 						>
 							<div class="px-4 py-5 flex-auto">
 								<div
-									class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400"
+									class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-300"
 								>
 									<i class="fas fa-retweet" />
 								</div>
@@ -145,7 +145,7 @@
 
 					<div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
 						<div
-							class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-red-400"
+							class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-amber-500"
 						>
 							<img alt="..." src="/example1.png" class="w-full align-middle rounded-t-lg" />
 							<blockquote class="relative p-8 mb-4">
@@ -155,7 +155,7 @@
 									viewBox="0 0 583 95"
 									class="absolute left-0 w-full block h-95-px -top-94-px"
 								>
-									<polygon points="-30,95 583,95 583,65" class="text-red-400 fill-current" />
+									<polygon points="-30,95 583,95 583,65" class="text-amber-500 fill-current" />
 								</svg>
 								<h4 class="text-xl font-bold text-white">Custom monitoring</h4>
 								<p class="text-md font-light mt-2 text-white">
@@ -195,7 +195,7 @@
 					<div class="w-full md:w-5/12 ml-auto mr-auto px-4">
 						<div class="md:pr-12">
 							<div
-								class="text-red-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-red-300"
+								class="text-sky-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-indigo-200"
 							>
 								<i class="fas fa-rocket text-xl" />
 							</div>
@@ -243,7 +243,7 @@
 					<div class="w-full lg:w-3/12 px-4 text-center">
 						<a
 							href={login_link}
-							class="bg-indigo-300 text-white active:bg-orange-600 font-bold uppercase text-base px-8 py-3 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+							class="bg-indigo-300 text-white font-bold uppercase text-base px-8 py-3 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
 						>
 							<button class="" type="button">
 								{login_link === '/login' ? 'Click to login with Discord' : 'Open app'}

@@ -43,7 +43,7 @@
 							<CardStats
 								statSubtitle="Members"
 								statTitle={guilds.current.member_count}
-								statIconColor="bg-red-500"
+								statIconColor="bg-amber-500"
 								statIconName="fas fa-users"
 							/>
 						</div>
@@ -52,7 +52,7 @@
 								statSubtitle="Online users"
 								statTitle={guilds.current.presence_count}
 								statIconName="fas fa-network-wired"
-								statIconColor="bg-orange-500"
+								statIconColor="bg-rose-400"
 							/>
 						</div>
 					</div>
@@ -66,7 +66,7 @@
 								statPercentColor={true ? 'text-emerald-500' : 'text-red-500'}
 								statDescripiron="Since last week"
 								statIconName="far fa-envelope"
-								statIconColor="bg-pink-500"
+								statIconColor="bg-pink-400"
 							/>
 						</div>
 					{/if}
@@ -80,7 +80,7 @@
 								statPercentColor={true ? 'text-emerald-500' : 'text-red-500'}
 								statDescripiron="Since last week"
 								statIconName="fas fa-microphone"
-								statIconColor="bg-emerald-500"
+								statIconColor="bg-emerald-400"
 							/>
 						</div>
 					{/if}

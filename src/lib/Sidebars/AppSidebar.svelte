@@ -33,7 +33,7 @@
 		</button>
 		<!-- Brand -->
 		<a
-			class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+			class="md:block text-left md:pb-2 text-black mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
 			href="/app/activities"
 		>
 			DiscordWrapped
@@ -55,7 +55,7 @@
 				<div class="flex flex-wrap">
 					<div class="w-6/12">
 						<a
-							class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+							class="md:block text-left md:pb-2 text-slate-500 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
 							href="/app/activities"
 						>
 							DiscordWrapped
@@ -88,8 +88,8 @@
 					<a
 						href="/app/activities"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/activities'
-							? 'text-red-500 hover:text-red-600'
-							: 'text-slate-700 hover:text-slate-500'}"
+							? 'text-indigo-800 hover:text-indigo-600'
+							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/activities';
 						}}
@@ -107,8 +107,8 @@
 					<a
 						href="/app/interactions"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/interactions'
-							? 'text-red-500 hover:text-red-600'
-							: 'text-slate-700 hover:text-slate-500'}"
+							? 'text-indigo-800 hover:text-indigo-600'
+							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/interactions';
 						}}
@@ -126,8 +126,8 @@
 					<a
 						href="/app/messages"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/messages'
-							? 'text-red-500 hover:text-red-600'
-							: 'text-slate-700 hover:text-slate-500'}"
+							? 'text-indigo-800 hover:text-indigo-600'
+							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/messages';
 						}}
@@ -145,8 +145,8 @@
 					<a
 						href="/app/monitoring"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/monitoring'
-							? 'text-red-500 hover:text-red-600'
-							: 'text-slate-700 hover:text-slate-500'}"
+							? 'text-indigo-800 hover:text-indigo-600'
+							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/monitoring';
 						}}
@@ -165,8 +165,8 @@
 					<a
 						href="/app/users"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/users'
-							? 'text-red-500 hover:text-red-600'
-							: 'text-slate-700 hover:text-slate-500'}"
+							? 'text-indigo-800 hover:text-indigo-600'
+							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/users';
 						}}
@@ -184,8 +184,8 @@
 					<a
 						href="/app/settings"
 						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/settings'
-							? 'text-red-500 hover:text-red-600'
-							: 'text-slate-700 hover:text-slate-500'}"
+							? 'text-indigo-800 hover:text-indigo-600'
+							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
 							activeRoute = '/app/settings';
 						}}
@@ -213,7 +213,7 @@
 				<li class="items-center">
 					<a
 						href="/api_info"
-						class="text-xs uppercase py-3 font-bold block text-slate-700 hover:text-slate-500"
+						class="text-xs uppercase py-3 font-bold block text-slate-800 hover:text-slate-500"
 					>
 						<i class="fa-solid fa-bookmark mr-2 ml-[1px] text-sm text-slate-300" /> API Docs
 					</a>
@@ -222,7 +222,7 @@
 				<li class="items-center">
 					<a
 						href="/manage"
-						class="text-xs uppercase py-3 font-bold block text-slate-700 hover:text-slate-500"
+						class="text-xs uppercase py-3 font-bold block text-slate-800 hover:text-slate-500"
 					>
 						<i class="fa-solid fa-shield mr-2 ml-0 text-sm text-slate-300" />Admin Panel
 					</a>
