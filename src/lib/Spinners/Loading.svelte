@@ -12,7 +12,6 @@
 	let fact = '';
 
 	onMount(async () => {
-		console.log('Loading.svelte onMount');
 		const res = await fetch('https://dog-api.kinduff.com/api/facts');
 		const data = await res.json();
 		if (!data.success) {
