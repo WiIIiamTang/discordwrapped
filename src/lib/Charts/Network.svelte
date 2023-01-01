@@ -44,7 +44,7 @@
 				.filter((link) => link.source == d.id || link.target == d.id)
 				.map((link) => link.value)
 				.reduce((a, b) => a + Math.sqrt(b), 0),
-			2.2
+			2.1
 		);
 		return Object.create(d);
 	});

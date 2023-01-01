@@ -138,7 +138,7 @@
 									id="activity-guild-totals"
 									name="activityguildtotals"
 									type="checkbox"
-									class="border-0 w-full px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:outline-0 ease-linear transition-all duration-150"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:outline-0 ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.activityguildtotals}
 								/>
 							</div>
@@ -155,7 +155,7 @@
 									id="card-popular"
 									name="activitypopular"
 									type="checkbox"
-									class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+									class="border-0 px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.activitypopular}
 								/>
 							</div>
@@ -172,7 +172,7 @@
 									id="card-trends"
 									type="checkbox"
 									name="activitytrends"
-									class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+									class="border-0 px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.activitytrends}
 								/>
 							</div>
@@ -189,7 +189,7 @@
 									id="card-top-users"
 									type="checkbox"
 									name="activitytopusers"
-									class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+									class="border-0 px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.activitytopusers}
 								/>
 							</div>
@@ -213,7 +213,7 @@
 									id="card-network"
 									name="interactionnetwork"
 									type="checkbox"
-									class="border-0 w-full px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.interactionnetwork}
 								/>
 							</div>
@@ -230,7 +230,7 @@
 									id="card-relationship-chart"
 									name="interactionrelationshipchart"
 									type="checkbox"
-									class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+									class="border-0 px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.interactionrelationshipchart}
 								/>
 							</div>
@@ -244,7 +244,7 @@
 									id="card-bot"
 									type="checkbox"
 									name="interactionbot"
-									class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+									class="border-0 px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.interactionbot}
 								/>
 							</div>
@@ -261,7 +261,7 @@
 									id="card-voice"
 									type="checkbox"
 									name="interactionvoice"
-									class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+									class="border-0 px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.interactionvoice}
 								/>
 							</div>
@@ -283,7 +283,7 @@
 									id="card-experimental"
 									name="experimental"
 									type="checkbox"
-									class="border-0 w-full px-3 py-3 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
 									bind:checked={data.userPreferences.settings.experimental}
 								/>
 							</div>
