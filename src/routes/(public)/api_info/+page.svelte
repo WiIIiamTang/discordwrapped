@@ -1,3 +1,7 @@
+<script>
+	import Codeblock from '$lib/Cards/Codeblock.svelte';
+</script>
+
 <section class="pb-20 pt-16 relative w-full h-full min-h-screen bg-neutral-200 -mt-24">
 	<div class="container mx-auto px-4">
 		<div class="flex flex-wrap items-center mt-32">
@@ -6,6 +10,10 @@
 				<p class="text-lg font-light leading-relaxed mt-4 mb-4 text-stone-600">
 					Fetch stats for your server programmatically.
 				</p>
+				<!-- <Codeblock
+					gistURL={'https://gist.github.com/WiIIiamTang/c960bdd82f9f62dbb3d32f9668eda210'}
+					title="Example"
+				/> -->
 			</div>
 		</div>
 	</div>
