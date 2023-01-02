@@ -204,3 +204,16 @@ export async function getGuildInfo(id) {
 	}
 	return null;
 }
+
+export async function getUserById(id) {
+	const response = await fetch(`https://discord.com/api/users/${id}`, {
+		headers: {
+			Authorization: `Bot ${DISCORD_BOT_TOKEN}`
+		}
+	});
+	const user = await response.json();
+	if (user.id) {
+		return user;
+	}
+	return null;
+}

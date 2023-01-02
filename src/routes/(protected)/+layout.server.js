@@ -10,7 +10,8 @@ import {
 	getOpenai,
 	getAudio,
 	getArchivedStats,
-	getUserPreferences
+	getUserPreferences,
+	getWords
 } from '$lib/server/mongo.js';
 import {
 	processActivities,
@@ -19,7 +20,8 @@ import {
 	ObjSortBy,
 	processInteractions,
 	processBotInteractions,
-	processActivitiesUserTable
+	processActivitiesUserTable,
+	processWords
 } from '$lib/server/stats.js';
 import { getGuildInfo } from '$lib/server/auth';
 import { getLatestDeploymentDate } from '$lib/server/vercel';
@@ -79,6 +81,7 @@ export async function load({ locals }) {
 		table_activities: processActivitiesUserTable(activities_sorted_total),
 		messages: await getMessages(),
 		voice: await getVoice(),
+		words: await processWords(await getWords()),
 		archived_stats_week_ago: archive_week,
 		tracking_since: await getTrackingTime(),
 		interactions: await processInteractions(await getInteractions()),

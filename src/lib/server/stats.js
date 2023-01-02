@@ -3,6 +3,35 @@
  * should be done server side ( *.server.js)
  */
 import { getActivitiesExceptions } from '$lib/server/mongo.js';
+import { stopwords } from '$lib/server/stopwords.js';
+import { getUserById } from '$lib/server/auth.js';
+
+export async function processWords(data) {
+	// count freq of all words together
+	const combined = Object.values(data.count_by_users).reduce((acc, cur) => {
+		Object.keys(cur).forEach((word) => {
+			if (acc[word]) {
+				acc[word] += cur[word];
+			} else {
+				acc[word] = cur[word];
+			}
+		});
+		return acc;
+	}, {});
+
+	const sorted = await Promise.all(
+		Object.entries(combined)
+			.sort((a, b) => b[1] - a[1])
+			.filter((word) => !stopwords.includes(word[0]))
+			.slice(0, 100)
+			.map(async (word) =>
+				word[0].length === 18 && !isNaN(word[0])
+					? [`@${(await getUserById(word[0])).username}`, word[1]]
+					: word
+			)
+	);
+	return sorted;
+}
 
 export function processBotInteractions(data) {
 	/**

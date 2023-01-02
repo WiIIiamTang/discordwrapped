@@ -13,6 +13,9 @@ export const actions = {
 			interactionrelationshipchart: data.get('interactionrelationshipchart'),
 			interactionbot: data.get('interactionbot'),
 			interactionvoice: data.get('interactionvoice'),
+			messageschannel: data.get('messageschannel'),
+			messagesuser: data.get('messagesuser'),
+			messagesfrequentwords: data.get('messagesfrequentwords'),
 			experimental: data.get('experimental')
 		};
 

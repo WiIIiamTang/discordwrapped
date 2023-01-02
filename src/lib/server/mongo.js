@@ -89,6 +89,9 @@ export async function getUserPreferences(id) {
 			interactionrelationshipchart: true,
 			interactionbot: true,
 			interactionvoice: true,
+			messageschannel: true,
+			messagesuser: true,
+			messagesfrequentwords: true,
 			experimental: false
 		};
 		return { userid: id, settings };
@@ -116,6 +119,27 @@ export async function getArchivedStats(date) {
 	}
 
 	return stats.document;
+}
+
+export async function getWords() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'words'
+			}
+		})
+	);
+
+	const words = await res.json();
+
+	if (!words.document) {
+		throw error(404, 'Words not found');
+	}
+
+	return words.document;
 }
 
 export async function getAudio() {

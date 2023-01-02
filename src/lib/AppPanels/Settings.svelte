@@ -269,6 +269,62 @@
 					</div>
 					<hr class="mt-6 border-b-1 border-slate-300" />
 
+					<h6 class="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">Messages</h6>
+					<div class="flex flex-wrap">
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-messageschannel"
+								>
+									Channel totals
+								</label>
+								<input
+									id="card-messageschannel"
+									name="messageschannel"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.messageschannel}
+								/>
+							</div>
+						</div>
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-messagesuser"
+								>
+									Top Users
+								</label>
+								<input
+									id="card-messagesuser"
+									name="messagesuser"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.messagesuser}
+								/>
+							</div>
+						</div>
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-freq"
+								>
+									Frequent Words
+								</label>
+								<input
+									id="card-freq"
+									name="messagesfrequentwords"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.messagesfrequentwords}
+								/>
+							</div>
+						</div>
+					</div>
+					<hr class="mt-6 border-b-1 border-slate-300" />
+
 					<h6 class="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">Misc</h6>
 					<div class="flex flex-wrap">
 						<div class="w-full lg:w-3/12 px-4">
