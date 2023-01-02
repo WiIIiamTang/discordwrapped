@@ -62,7 +62,7 @@ export async function handle({ event, resolve }) {
 	}
 
 	if (event.url.pathname.startsWith('/api/admin')) {
-		const rate_res = await ratelimit(redis, event, 21);
+		const rate_res = await ratelimit(redis, event, 20);
 		if (!rate_res) {
 			throw error(429, 'rate limited');
 		}
