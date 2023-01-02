@@ -1,6 +1,6 @@
 import { createClient } from 'redis';
 import { EXTERNAL_REDIS_URL, RUNTIME_ENV, EXTERNAL_REDIS_URL2 } from '$env/static/private';
-import { error } from 'svelte';
+import { error } from '@sveltejs/kit';
 
 let rurl = EXTERNAL_REDIS_URL;
 export const redis =
