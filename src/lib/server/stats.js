@@ -20,8 +20,8 @@ export function processStatusLogsRaw(data) {
 
 export function processStatusLogs(data, startdate, minutes = false) {
 	const user_logs = data.count_by_users;
-	const tracking_since_date = dayjs.utc(dayjs(startdate)).add(2, 'day'); // add 2 days because the first days were not complete
-	const today_date = dayjs.utc(dayjs());
+	const tracking_since_date = dayjs.utc(startdate).add(2, 'day'); // add 2 days because the first days were not complete
+	const today_date = dayjs.utc();
 	let timeline;
 
 	if (!minutes) {
@@ -44,7 +44,7 @@ export function processStatusLogs(data, startdate, minutes = false) {
 			let rounded_date_key;
 
 			userlog.forEach((log) => {
-				const date_key = dayjs.utc(dayjs(log.time));
+				const date_key = dayjs.utc(log.time);
 				// round the date_key to the nearest hour, because the timeline is hourly
 				rounded_date_key = date_key.startOf('hour').format();
 				if (!counter[rounded_date_key]) {
