@@ -16,6 +16,11 @@ export const actions = {
 			messageschannel: data.get('messageschannel'),
 			messagesuser: data.get('messagesuser'),
 			messagesfrequentwords: data.get('messagesfrequentwords'),
+			monitoruserpresence: data.get('monitoruserpresence'),
+			monitoruserpresencelog: data.get('monitoruserpresencelog'),
+			usersactivity: data.get('usersactivity'),
+			usersmessages: data.get('usersmessages'),
+			usersvoice: data.get('usersvoice'),
 			experimental: data.get('experimental')
 		};
 

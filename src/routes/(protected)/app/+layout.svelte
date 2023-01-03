@@ -11,7 +11,7 @@
 </script>
 
 <div>
-	<AppSidebar guilds={data.bot_guilds} />
+	<AppSidebar guilds={data.bot_guilds} preferences={data.userPreferences} />
 	<div class="relative md:ml-64 bg-slate-100">
 		<AppNavbar guilds={data.bot_guilds} since_date={data.tracking_since} />
 		<HeaderStats

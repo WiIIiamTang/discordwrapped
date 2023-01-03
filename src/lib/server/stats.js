@@ -5,9 +5,85 @@
 import { getActivitiesExceptions } from '$lib/server/mongo.js';
 import { stopwords } from '$lib/server/stopwords.js';
 import { getUserById } from '$lib/server/auth.js';
+import dayjs from 'dayjs';
+dayjs().format();
 
-export function processStatusLogs(data) {
+export function processStatusLogsRaw(data) {
+	// reverse each array
+	Object.values(data).forEach((userlog) => {
+		userlog.reverse();
+	});
+
 	return data;
+}
+
+export function processStatusLogs(data, startdate, minutes = false) {
+	const user_logs = data.count_by_users;
+	const tracking_since_date = dayjs(startdate).add(2, 'day'); // add 2 days because the first days were not complete
+	const today_date = dayjs();
+	let timeline;
+
+	if (!minutes) {
+		timeline = Array(24 * today_date.diff(tracking_since_date, 'day'))
+			.fill()
+			.reduce((acc, curr, i) => {
+				const date_key = tracking_since_date.add(i, 'hour').format();
+				acc[date_key] = {};
+				acc[date_key].online = 0;
+				acc[date_key].offline = 0;
+				acc[date_key].idle = 0;
+				acc[date_key].dnd = 0;
+
+				return acc;
+			}, {});
+
+		Object.values(user_logs).forEach((userlog) => {
+			// update the timeline hashmap with the user_logs data
+			const counter = {};
+			let rounded_date_key;
+
+			userlog.forEach((log) => {
+				const date_key = dayjs(log.time);
+				// round the date_key to the nearest hour, because the timeline is hourly
+				rounded_date_key = date_key.startOf('hour').format();
+				if (!counter[rounded_date_key]) {
+					counter[rounded_date_key] = {
+						online: 0,
+						offline: 0,
+						idle: 0,
+						dnd: 0
+					};
+				}
+
+				counter[rounded_date_key][log.status] += 1;
+			});
+
+			// Since users can have multiple statuses change within the same hour, we aggregate the statuses
+			// and pick the most common status to set 1 for that hour...
+
+			// This is not acutally accurate since the user could have been online for 8 minutes and offline for 50 minutes
+			// and switch between online/dnd alot.
+			Object.entries(timeline).forEach(([date_key]) => {
+				if (!counter[date_key]) {
+					timeline[date_key].offline += 1;
+					return;
+				}
+
+				// if everything in counter statuses is	0, then set to offline
+				if (Object.values(counter[date_key]).every((val) => val === 0)) {
+					timeline[date_key].offline += 1;
+				} else {
+					const max = Math.max(...Object.values(counter[date_key]));
+					const status = Object.keys(counter[date_key]).find(
+						(key) => counter[date_key][key] === max
+					);
+
+					timeline[date_key][status] += 1;
+				}
+			});
+		});
+	}
+	return timeline;
 }
 
 export async function processWords(data) {

@@ -25,7 +25,8 @@ import {
 	processBotInteractions,
 	processActivitiesUserTable,
 	processWords,
-	processStatusLogs
+	processStatusLogs,
+	processStatusLogsRaw
 } from '$lib/server/stats.js';
 import { getGuildInfo, getGuildMembers } from '$lib/server/auth';
 import { getLatestDeploymentDate } from '$lib/server/vercel';
@@ -64,6 +65,12 @@ export async function load({ locals }) {
 	const activities_sorted_total = await ObjSortBy(activities);
 	const activities_non_sorted_100 = await ObjSortBy(activities, 100, false);
 
+	// date
+	const tracking_since = await getTrackingTime();
+
+	// status logs
+	const status_logs = await getStatusTimeStream();
+
 	return {
 		user: locals.user,
 		userPreferences: await getUserPreferences(locals.user.id),
@@ -88,7 +95,7 @@ export async function load({ locals }) {
 		voice: await getVoice(),
 		words: await processWords(await getWords()),
 		archived_stats_week_ago: archive_week,
-		tracking_since: await getTrackingTime(),
+		tracking_since: tracking_since,
 		interactions: await processInteractions(await getInteractions()),
 		botInteractions: processBotInteractions({
 			waifu: await getWaifu(),
@@ -98,7 +105,8 @@ export async function load({ locals }) {
 			audio: await getAudio()
 		}),
 		status: await getStatus(),
-		status_time_stream: processStatusLogs(await getStatusTimeStream()),
+		status_time_stream: processStatusLogs(status_logs, tracking_since),
+		status_logs_raw: processStatusLogsRaw(status_logs.count_by_users),
 		voiceState: await getVoiceState()
 	};
 }

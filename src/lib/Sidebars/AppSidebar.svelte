@@ -15,6 +15,7 @@
 	}
 
 	export let guilds;
+	export let preferences;
 </script>
 
 <nav
@@ -179,6 +180,27 @@
 						Users
 					</a>
 				</li>
+
+				{#if preferences.settings.experimental}
+					<li class="items-center">
+						<a
+							href="/app/download"
+							class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/download'
+								? 'text-indigo-800 hover:text-indigo-600'
+								: 'text-slate-800 hover:text-slate-500'}"
+							on:click={() => {
+								activeRoute = '/app/download';
+							}}
+						>
+							<i
+								class="fa-solid fa-download mr-2 text-sm {activeRoute === '/app/download'
+									? 'opacity-75'
+									: 'text-slate-300'}"
+							/>
+							Download
+						</a>
+					</li>
+				{/if}
 
 				<li class="items-center">
 					<a

@@ -92,6 +92,11 @@ export async function getUserPreferences(id) {
 			messageschannel: true,
 			messagesuser: true,
 			messagesfrequentwords: true,
+			monitoruserpresence: true,
+			monitoruserpresencelog: true,
+			usersactivity: true,
+			usersmessages: true,
+			usersvoice: true,
 			experimental: false
 		};
 		return { userid: id, settings };

@@ -207,7 +207,7 @@
 									class="block uppercase text-slate-600 text-xs font-bold mb-2"
 									for="card-network"
 								>
-									Member network
+									Network
 								</label>
 								<input
 									id="card-network"
@@ -224,7 +224,7 @@
 									class="block uppercase text-slate-600 text-xs font-bold mb-2"
 									for="card-relationship-chart"
 								>
-									Relationship chart
+									Relationships
 								</label>
 								<input
 									id="card-relationship-chart"
@@ -238,7 +238,7 @@
 						<div class="w-full lg:w-3/12 px-4">
 							<div class="relative w-full mb-3">
 								<label class="block uppercase text-slate-600 text-xs font-bold mb-2" for="card-bot">
-									Bot interactions
+									Bot
 								</label>
 								<input
 									id="card-bot"
@@ -269,7 +269,9 @@
 					</div>
 					<hr class="mt-6 border-b-1 border-slate-300" />
 
-					<h6 class="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">Messages</h6>
+					<h6 class="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
+						Card Display: Messages
+					</h6>
 					<div class="flex flex-wrap">
 						<div class="w-full lg:w-3/12 px-4">
 							<div class="relative w-full mb-3">
@@ -325,6 +327,103 @@
 					</div>
 					<hr class="mt-6 border-b-1 border-slate-300" />
 
+					<h6 class="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
+						Card Display: Monitoring
+					</h6>
+					<div class="flex flex-wrap">
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-monitoruserpresence"
+								>
+									Line Chart
+								</label>
+								<input
+									id="card-monitoruserpresence"
+									name="monitoruserpresence"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.monitoruserpresence}
+								/>
+							</div>
+						</div>
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-monitoruserpresencelog"
+								>
+									User Logs
+								</label>
+								<input
+									id="card-monitoruserpresencelog"
+									name="monitoruserpresencelog"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.monitoruserpresencelog}
+								/>
+							</div>
+						</div>
+					</div>
+					<hr class="mt-6 border-b-1 border-slate-300" />
+
+					<h6 class="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">Card Display: Users</h6>
+					<div class="flex flex-wrap">
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-usersactivity"
+								>
+									Activity
+								</label>
+								<input
+									id="card-usersactivity"
+									name="usersactivity"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.usersactivity}
+								/>
+							</div>
+						</div>
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-usersmessages"
+								>
+									Messages
+								</label>
+								<input
+									id="card-usersmessages"
+									name="usersmessages"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.usersmessages}
+								/>
+							</div>
+						</div>
+						<div class="w-full lg:w-3/12 px-4">
+							<div class="relative w-full mb-3">
+								<label
+									class="block uppercase text-slate-600 text-xs font-bold mb-2"
+									for="card-usersvoice"
+								>
+									Voice
+								</label>
+								<input
+									id="card-usersvoice"
+									name="usersvoice"
+									type="checkbox"
+									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+									bind:checked={data.userPreferences.settings.usersvoice}
+								/>
+							</div>
+						</div>
+					</div>
+					<hr class="mt-6 border-b-1 border-slate-300" />
+
 					<h6 class="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">Misc</h6>
 					<div class="flex flex-wrap">
 						<div class="w-full lg:w-3/12 px-4">
@@ -347,7 +446,7 @@
 						{#if data.userPreferences.settings.experimental}
 							<div class="flex items-center justify-center">
 								<p class="text-amber-600 text-sm text-center mt-2">
-									Enabling this might break the application.
+									These are not stable and may not work as expected.
 								</p>
 							</div>
 						{/if}
