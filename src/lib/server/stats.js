@@ -6,6 +6,10 @@ import { getActivitiesExceptions } from '$lib/server/mongo.js';
 import { stopwords } from '$lib/server/stopwords.js';
 import { getUserById } from '$lib/server/auth.js';
 
+export function processStatusLogs(data) {
+	return data;
+}
+
 export async function processWords(data) {
 	// count freq of all words together
 	const combined = Object.values(data.count_by_users).reduce((acc, cur) => {

@@ -24,7 +24,8 @@ import {
 	processInteractions,
 	processBotInteractions,
 	processActivitiesUserTable,
-	processWords
+	processWords,
+	processStatusLogs
 } from '$lib/server/stats.js';
 import { getGuildInfo, getGuildMembers } from '$lib/server/auth';
 import { getLatestDeploymentDate } from '$lib/server/vercel';
@@ -97,7 +98,7 @@ export async function load({ locals }) {
 			audio: await getAudio()
 		}),
 		status: await getStatus(),
-		status_time_stream: await getStatusTimeStream(),
+		status_time_stream: processStatusLogs(await getStatusTimeStream()),
 		voiceState: await getVoiceState()
 	};
 }
