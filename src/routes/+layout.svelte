@@ -4,7 +4,9 @@
 	import { inject } from '@vercel/analytics';
 	import { onMount } from 'svelte';
 	import { PUBLIC_RUNTIME_ENV } from '$env/static/public';
-	import { navigating } from '$app/stores';
+	import { navigating, page } from '$app/stores';
+	import { browser } from '$app/environment';
+	import { webVitals } from '$lib/vitals.js';
 	import Loading from '$lib/Spinners/Loading.svelte';
 
 	onMount(() => {
@@ -13,6 +15,15 @@
 			debug: PUBLIC_RUNTIME_ENV === 'DEV' ? true : false
 		});
 	});
+
+	let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
+	$: if (browser && analyticsId) {
+		webVitals({
+			path: $page.url.pathname,
+			params: $page.params,
+			analyticsId
+		});
+	}
 </script>
 
 {#if $navigating && $navigating.to.url.pathname.startsWith('/app') && !$navigating.from.url.pathname.startsWith('/app')}
