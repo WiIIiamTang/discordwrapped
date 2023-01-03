@@ -238,6 +238,7 @@
 						class="text-xs uppercase py-3 font-bold block text-slate-800 hover:text-slate-500"
 					>
 						<i class="fa-solid fa-bookmark mr-2 ml-[1px] text-sm text-slate-300" /> API Docs
+						<i class="fa fa-external-link ml-1" />
 					</a>
 				</li>
 
@@ -247,6 +248,7 @@
 						class="text-xs uppercase py-3 font-bold block text-slate-800 hover:text-slate-500"
 					>
 						<i class="fa-solid fa-shield mr-2 ml-0 text-sm text-slate-300" />Admin Panel
+						<i class="fa fa-external-link ml-1" />
 					</a>
 				</li>
 			</ul>
