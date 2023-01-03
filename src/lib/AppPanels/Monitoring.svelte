@@ -48,13 +48,13 @@
 		timezone = 'America/New_York';
 	});
 
-	console.log(data.status_time_stream);
+	// console.log(data.status_time_stream);
 
 	let data_keys = Object.keys(data.status_time_stream).map((key) => {
 		return dayjs.utc(key).tz(timezone).format('MM/DD/YYYY HH:mm');
 	});
 
-	console.log(data_keys);
+	// console.log(data_keys);
 
 	let start_key_index = 0;
 	let end_key_index = Object.keys(data_keys).length - 1;
