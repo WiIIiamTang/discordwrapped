@@ -11,7 +11,10 @@ import {
 	getAudio,
 	getArchivedStats,
 	getUserPreferences,
-	getWords
+	getWords,
+	getStatus,
+	getStatusTimeStream,
+	getVoiceState
 } from '$lib/server/mongo.js';
 import {
 	processActivities,
@@ -23,7 +26,7 @@ import {
 	processActivitiesUserTable,
 	processWords
 } from '$lib/server/stats.js';
-import { getGuildInfo } from '$lib/server/auth';
+import { getGuildInfo, getGuildMembers } from '$lib/server/auth';
 import { getLatestDeploymentDate } from '$lib/server/vercel';
 import { RUNTIME_ENV } from '$env/static/private';
 
@@ -71,7 +74,8 @@ export async function load({ locals }) {
 				name: guild.name,
 				icon: `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`,
 				member_count: guild.approximate_member_count,
-				presence_count: guild.approximate_presence_count
+				presence_count: guild.approximate_presence_count,
+				members: await getGuildMembers(guild.id)
 			},
 			others: []
 		},
@@ -91,6 +95,9 @@ export async function load({ locals }) {
 			wolfram: await getWolfram(),
 			openai: await getOpenai(),
 			audio: await getAudio()
-		})
+		}),
+		status: await getStatus(),
+		status_time_stream: await getStatusTimeStream(),
+		voiceState: await getVoiceState()
 	};
 }

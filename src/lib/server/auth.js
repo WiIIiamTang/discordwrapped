@@ -205,6 +205,19 @@ export async function getGuildInfo(id) {
 	return null;
 }
 
+export async function getGuildMembers(id) {
+	const response = await fetch(`https://discord.com/api/guilds/${id}/members?limit=100`, {
+		headers: {
+			Authorization: `Bot ${DISCORD_BOT_TOKEN}`
+		}
+	});
+	const members = await response.json();
+	if (members !== undefined && members.length > 0) {
+		return members.filter((member) => !member.user.bot);
+	}
+	return null;
+}
+
 export async function getUserById(id) {
 	const response = await fetch(`https://discord.com/api/users/${id}`, {
 		headers: {

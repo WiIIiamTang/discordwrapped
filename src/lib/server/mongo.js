@@ -121,6 +121,69 @@ export async function getArchivedStats(date) {
 	return stats.document;
 }
 
+export async function getStatus() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'status'
+			}
+		})
+	);
+
+	const status = await res.json();
+
+	if (!status.document) {
+		throw error(404, 'Status not found');
+	}
+
+	return status.document;
+}
+
+export async function getStatusTimeStream() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'status_time_stream'
+			}
+		})
+	);
+
+	const status = await res.json();
+
+	if (!status.document) {
+		throw error(404, 'Status not found');
+	}
+
+	return status.document;
+}
+
+export async function getVoiceState() {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				category: 'voice_state'
+			}
+		})
+	);
+
+	const voiceState = await res.json();
+
+	if (!voiceState.document) {
+		throw error(404, 'Voice state not found');
+	}
+
+	return voiceState.document;
+}
+
 export async function getWords() {
 	const res = await _findOne(
 		JSON.stringify({
