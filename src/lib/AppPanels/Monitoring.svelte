@@ -51,7 +51,7 @@
 	console.log(data.status_time_stream);
 
 	let data_keys = Object.keys(data.status_time_stream).map((key) => {
-		return dayjs.utc(dayjs(key)).tz(timezone).format('MM/DD/YYYY HH:mm');
+		return dayjs.utc(key).tz(timezone).format('MM/DD/YYYY HH:mm');
 	});
 
 	console.log(data_keys);
@@ -65,6 +65,13 @@
 
 <div class="pb-6">
 	<div class="flex flex-wrap">
+		<div class="w-full lg:w-12/12 px-4">
+			<div
+				class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-amber-100 border-0"
+			>
+				<p class="text-center py-3">Timezone: America/New York</p>
+			</div>
+		</div>
 		{#if data.userPreferences.settings.monitoruserpresence}
 			<div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
 				<div

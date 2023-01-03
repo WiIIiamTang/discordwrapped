@@ -6,6 +6,8 @@ import { getActivitiesExceptions } from '$lib/server/mongo.js';
 import { stopwords } from '$lib/server/stopwords.js';
 import { getUserById } from '$lib/server/auth.js';
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 
 export function processStatusLogsRaw(data) {
 	// reverse each array
@@ -18,8 +20,8 @@ export function processStatusLogsRaw(data) {
 
 export function processStatusLogs(data, startdate, minutes = false) {
 	const user_logs = data.count_by_users;
-	const tracking_since_date = dayjs(startdate).add(2, 'day'); // add 2 days because the first days were not complete
-	const today_date = dayjs();
+	const tracking_since_date = dayjs.utc(dayjs(startdate)).add(2, 'day'); // add 2 days because the first days were not complete
+	const today_date = dayjs.utc(dayjs());
 	let timeline;
 
 	if (!minutes) {
@@ -42,7 +44,7 @@ export function processStatusLogs(data, startdate, minutes = false) {
 			let rounded_date_key;
 
 			userlog.forEach((log) => {
-				const date_key = dayjs(log.time);
+				const date_key = dayjs.utc(dayjs(log.time));
 				// round the date_key to the nearest hour, because the timeline is hourly
 				rounded_date_key = date_key.startOf('hour').format();
 				if (!counter[rounded_date_key]) {
