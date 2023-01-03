@@ -45,7 +45,7 @@
 	// convert the keys dates.
 	// TODO: select timezone from user preferences?
 	onMount(() => {
-		timezone = dayjs.tz.guess();
+		timezone = 'America/New_York';
 	});
 
 	let data_keys = Object.keys(data.status_time_stream).map((key) => {

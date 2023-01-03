@@ -15,7 +15,7 @@
 	// TODO: select timezone from user preferences?
 	// TODO: can we do this in the parent component, where its already being done?
 	onMount(() => {
-		timezone = dayjs.tz.guess();
+		timezone = 'America/New_York';
 	});
 
 	$: data_logs = selected_user ? data.status_logs_raw[selected_user] : [];
@@ -65,7 +65,7 @@
 					return (
 						log.status.toLowerCase().includes(searchterm) ||
 						dayjs
-							.utc(dayjs(log.time))
+							.utc(dayjs(log.time), true)
 							.tz(timezone)
 							.format('MM/DD/YYYY HH:mm')
 							.includes(searchterm) ||
