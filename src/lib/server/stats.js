@@ -24,10 +24,6 @@ export function processStatusLogs(data, startdate, minutes = false) {
 	const today_date = dayjs.utc();
 	let timeline;
 
-	console.log(startdate);
-	console.log('tracking_since_date', tracking_since_date.format(), tracking_since_date.isUTC());
-	console.log('today_date', today_date.format());
-
 	if (!minutes) {
 		timeline = Array(24 * today_date.diff(tracking_since_date, 'day'))
 			.fill()

@@ -67,6 +67,15 @@ export async function load({ locals }) {
 
 	// date
 	const tracking_since = await getTrackingTime();
+	const tracking_since_date_local = new Date(tracking_since);
+	const tracking_since_date = new Date(
+		Date.UTC(
+			tracking_since_date_local.getFullYear(),
+			tracking_since_date_local.getMonth(),
+			tracking_since_date_local.getDate(),
+			5
+		)
+	);
 
 	// status logs
 	const status_logs = await getStatusTimeStream();
@@ -95,7 +104,7 @@ export async function load({ locals }) {
 		voice: await getVoice(),
 		words: await processWords(await getWords()),
 		archived_stats_week_ago: archive_week,
-		tracking_since: tracking_since,
+		tracking_since: tracking_since_date,
 		interactions: await processInteractions(await getInteractions()),
 		botInteractions: processBotInteractions({
 			waifu: await getWaifu(),
@@ -105,7 +114,7 @@ export async function load({ locals }) {
 			audio: await getAudio()
 		}),
 		status: await getStatus(),
-		status_time_stream: processStatusLogs(status_logs, tracking_since),
+		status_time_stream: processStatusLogs(status_logs, tracking_since_date),
 		status_logs_raw: processStatusLogsRaw(status_logs.count_by_users),
 		voiceState: await getVoiceState()
 	};

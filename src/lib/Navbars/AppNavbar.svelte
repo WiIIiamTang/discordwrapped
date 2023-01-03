@@ -24,7 +24,7 @@
 		{#if since_date}
 			<p class="text-white text-sm uppercase hidden lg:inline-block font-semibold">
 				<span class="text-slate-700 font-bold">Tracking since: </span><span class="text-slate-700">
-					{since_date}</span
+					{since_date.toLocaleDateString('en-CA')}</span
 				>
 			</p>
 		{/if}

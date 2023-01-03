@@ -64,11 +64,7 @@
 			  data.status_logs_raw[selected_user].filter((log) => {
 					return (
 						log.status.toLowerCase().includes(searchterm) ||
-						dayjs
-							.utc(dayjs(log.time), true)
-							.tz(timezone)
-							.format('MM/DD/YYYY HH:mm')
-							.includes(searchterm) ||
+						dayjs.utc(log.time).tz(timezone).format('MM/DD/YYYY HH:mm').includes(searchterm) ||
 						selected_user.toLowerCase().includes(searchterm)
 					);
 			  })
@@ -99,9 +95,9 @@
 		const currentDiff =
 			-1 *
 			dayjs
-				.utc(dayjs(data_logs[i + 1].time))
+				.utc(data_logs[i + 1].time)
 				.tz(timezone)
-				.diff(dayjs.utc(dayjs(log.time)).tz(timezone), 'minute');
+				.diff(dayjs.utc(log.time).tz(timezone), 'minute');
 		return currentDiff;
 	};
 
@@ -143,7 +139,7 @@
 				<p>
 					<span class="font-semibold">{selected_user}</span> changed their status: {log.status}
 				</p>
-				<p>Time registered: {dayjs.utc(dayjs(log.time)).tz(timezone).format('MM/DD/YYYY HH:mm')}</p>
+				<p>Time registered: {dayjs.utc(log.time).tz(timezone).format('MM/DD/YYYY HH:mm')}</p>
 			</div>
 			<div>
 				<!-- This computes the time between this log and the next -->
@@ -163,7 +159,7 @@
 						<div />
 					</div>
 					<div class="flex flex-row justify-center items-center text-amber-700 font-semibold">
-						{diffs[i] > 60 ? Math.round((diffs[i] / 60) * 1000) / 1000 : diffs[i]}{' '}
+						{diffs[i] > 60 ? Math.round((diffs[i] / 60) * 100) / 100 : diffs[i]}{' '}
 						{diffs[i] > 60 ? 'hours' : 'minutes'}
 					</div>
 					<div
