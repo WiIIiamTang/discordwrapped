@@ -10,9 +10,23 @@
 {:else}
 	<div class="h-screen w-full bg-neutral-200">
 		<h1 class="text-4xl text-slate-700">admin menu</h1>
-		<div>
-			<p>Guilds allowed: {JSON.stringify(data.guilds_allow.guilds)}</p>
-			<p>Members allowed: {JSON.stringify(data.members_allow.members)}</p>
+		<div class="flex flex-row gap-10">
+			<div>
+				<p>Guilds allowed:</p>
+				<ul>
+					{#each data.guilds_allow.guilds as guild}
+						<li>{guild}</li>
+					{/each}
+				</ul>
+			</div>
+			<div class="max-h-[300px] overflow-auto">
+				<p>Members allowed:</p>
+				<ul>
+					{#each data.members_allow.members as member}
+						<li>{member}</li>
+					{/each}
+				</ul>
+			</div>
 		</div>
 
 		<div class="grid grid-cols-2 gap-1 w-fit">

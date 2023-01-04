@@ -1,3 +1,3 @@
-# stats website
+# discordwrapped
 
-Shows info gathered from [billbot](https://github.com/WiIIiamTang/billbot2)
+Displays various stats about your Discord server in an easy to use dashboard.

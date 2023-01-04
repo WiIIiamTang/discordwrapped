@@ -1,16 +1,29 @@
 <script>
-	import Users from './Users.svelte';
 	let archivedate = '';
 	let currentcategory = 'messages';
-	async function download_file() {
-		// console.log('download file', window.location);
-		const res = await fetch('/api/data/archive');
+
+	async function download_archive() {
+		if (archivedate === '') {
+			alert('Please select a date');
+			return;
+		}
+
+		const api_link = `/api/data/archive/${archivedate}`;
+		const res = await fetch(api_link);
+		if (res.status === 429) {
+			alert('Too many requests');
+			return;
+		}
+		if (res.status !== 200) {
+			alert('Error while fetching data');
+			return;
+		}
 		const blob = await res.blob();
 		let url = window.URL || window.webkitURL;
 		let blobUrl = url.createObjectURL(blob);
 
 		let a = document.createElement('a');
-		a.setAttribute('download', 'data.json');
+		a.setAttribute('download', 'archivedata.json');
 		a.setAttribute('href', blobUrl);
 		document.body.appendChild(a);
 		a.click();
@@ -20,12 +33,43 @@
 	async function download_file_current() {
 		// console.log('download file', window.location);
 		const res = await fetch('/api/data/archive');
+		if (res.status === 429) {
+			alert('Too many requests');
+			return;
+		}
+		if (res.status !== 200) {
+			alert('Error while fetching data');
+			return;
+		}
 		const blob = await res.blob();
 		let url = window.URL || window.webkitURL;
 		let blobUrl = url.createObjectURL(blob);
 
 		let a = document.createElement('a');
-		a.setAttribute('download', 'data.json');
+		a.setAttribute('download', 'currentdata.json');
+		a.setAttribute('href', blobUrl);
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+	}
+
+	async function download_file_category() {
+		// console.log('download file', window.location);
+		const res = await fetch(`/api/data/${currentcategory}`);
+		if (res.status === 429) {
+			alert('Too many requests');
+			return;
+		}
+		if (res.status !== 200) {
+			alert('Error while fetching data');
+			return;
+		}
+		const blob = await res.blob();
+		let url = window.URL || window.webkitURL;
+		let blobUrl = url.createObjectURL(blob);
+
+		let a = document.createElement('a');
+		a.setAttribute('download', `data${currentcategory}.json`);
 		a.setAttribute('href', blobUrl);
 		document.body.appendChild(a);
 		a.click();
@@ -62,23 +106,31 @@
 								</div>
 								<button
 									class="bg-amber-300 text-black active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
-									on:click={download_file}>Download</button
+									on:click={download_archive}>Download</button
+								>
+							</div>
+						</div>
+						<div class="w-full shadow-lg p-10 mb-5 bg-slate-400 rounded">
+							<h3 class="text-xl font-bold pb-5">Current (all)</h3>
+							<div class="flex flex-row flex-wrap gap-4">
+								<button
+									class="bg-amber-300 text-black active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
+									on:click={download_file_current}>Download</button
 								>
 							</div>
 						</div>
 						<div class="w-full shadow-lg p-10 bg-slate-400 rounded">
-							<h3 class="text-xl font-bold pb-5">Current data</h3>
+							<h3 class="text-xl font-bold pb-5">Categories</h3>
 							<div class="flex flex-row flex-wrap gap-4">
 								<select bind:value={currentcategory}>
 									<option value="messages">Messages</option>
 									<option value="activities">Activities</option>
-									<option value="users">Users</option>
 									<option value="voice">Voice</option>
 									<option value="status">Status</option>
 								</select>
 								<button
 									class="bg-amber-300 text-black active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
-									on:click={download_file_current}>Download</button
+									on:click={download_file_category}>Download</button
 								>
 							</div>
 						</div>

@@ -1,10 +1,19 @@
 import { json } from '@sveltejs/kit';
+import {
+	insertMemberAllowlist,
+	getMemberAllowlist,
+	deleteMemberAllowlist
+} from '$lib/server/mongo.js';
 
 /**
  * @type {import('@sveltejs/kit').RequestHandler}
  */
 export async function GET() {
-	return json({ members: ['123'] });
+	const response = await getMemberAllowlist();
+	return json({
+		members: response,
+		success: true // true when getMemberAllowlist does not throw an error.
+	});
 }
 
 /**
@@ -12,7 +21,8 @@ export async function GET() {
  */
 export async function POST({ request }) {
 	const { id } = await request.json();
-	return json({ guilds: id, success: true });
+	const response_success = await insertMemberAllowlist(id);
+	return json({ members: id, success: response_success });
 }
 
 /**
@@ -20,5 +30,6 @@ export async function POST({ request }) {
  */
 export async function DELETE({ request }) {
 	const { id } = await request.json();
-	return json({ guilds: id, success: true });
+	const response_success = await deleteMemberAllowlist(id);
+	return json({ members: id, success: response_success });
 }

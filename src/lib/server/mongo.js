@@ -13,6 +13,18 @@ async function _findOne(data) {
 	});
 }
 
+async function _find(data) {
+	return fetch(`${MONGO_API_ENDPOINT}/action/find`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'api-key': MONGO_API_KEY,
+			'Access-Control-Request-Headers': '*'
+		},
+		body: data
+	});
+}
+
 // async function _insertOne(data) {
 // 	return fetch(`${MONGO_API_ENDPOINT}/action/insertOne`, {
 // 		method: 'POST',
@@ -35,6 +47,117 @@ async function _updateOne(data) {
 		},
 		body: data
 	});
+}
+
+////////////////////////////////////////////////////////////////////
+// Writes to database functions (danger!)
+
+export async function deleteMemberAllowlist(id) {
+	const res = await _updateOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'member_allowlist'
+			},
+			update: {
+				$pull: {
+					ids: id
+				}
+			},
+			upsert: true
+		})
+	);
+
+	const response = await res.json();
+
+	if (!response.matchedCount && !response.upsertedId) {
+		return false;
+	}
+
+	return true;
+}
+
+export async function insertMemberAllowlist(id) {
+	const res = await _updateOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'member_allowlist'
+			},
+			update: {
+				$push: {
+					ids: id
+				}
+			},
+			upsert: true
+		})
+	);
+
+	const response = await res.json();
+
+	if (!response.matchedCount && !response.upsertedId) {
+		return false;
+	}
+
+	return true;
+}
+
+export async function deleteGuildAllowlist(id) {
+	const res = await _updateOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'guild_allowlist'
+			},
+			update: {
+				$pull: {
+					ids: id
+				}
+			},
+			upsert: true
+		})
+	);
+
+	const response = await res.json();
+
+	if (!response.matchedCount && !response.upsertedId) {
+		return false;
+	}
+
+	return true;
+}
+
+export async function insertGuildAllowlist(id) {
+	const res = await _updateOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'guild_allowlist'
+			},
+			update: {
+				$push: {
+					ids: id
+				}
+			},
+			upsert: true
+		})
+	);
+
+	const response = await res.json();
+
+	if (!response.matchedCount && !response.upsertedId) {
+		return false;
+	}
+
+	return true;
 }
 
 export async function updateUserPreferences(id, settings) {
@@ -64,6 +187,8 @@ export async function updateUserPreferences(id, settings) {
 
 	return true;
 }
+
+///////////////////////////////////////////////////////////////////
 
 export async function getUserPreferences(id) {
 	const res = await _findOne(
@@ -103,6 +228,24 @@ export async function getUserPreferences(id) {
 	}
 
 	return user.document;
+}
+
+export async function getAllCurrentStats() {
+	const res = await _find(
+		JSON.stringify({
+			collection: 'stats',
+			database: 'billbot',
+			dataSource: 'Cluster0'
+		})
+	);
+
+	const stats = await res.json();
+
+	if (!stats.documents) {
+		throw error(404, 'Stats not found');
+	}
+
+	return stats.documents;
 }
 
 export async function getArchivedStats(date) {
