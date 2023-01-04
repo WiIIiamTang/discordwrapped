@@ -393,7 +393,7 @@
 									class="block uppercase text-slate-600 text-xs font-bold mb-2"
 									for="card-usersmessages"
 								>
-									Messages
+									Messages&Voice
 								</label>
 								<input
 									id="card-usersmessages"
@@ -408,16 +408,16 @@
 							<div class="relative w-full mb-3">
 								<label
 									class="block uppercase text-slate-600 text-xs font-bold mb-2"
-									for="card-usersvoice"
+									for="card-usersachieve"
 								>
-									Voice
+									Achievements
 								</label>
 								<input
-									id="card-usersvoice"
-									name="usersvoice"
+									id="card-usersachieve"
+									name="usersachieve"
 									type="checkbox"
 									class="border-0 w-full px-3 py-4 placeholder-slate-300 text-slate-600 bg-slate-100 rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
-									bind:checked={data.userPreferences.settings.usersvoice}
+									bind:checked={data.userPreferences.settings.usersachieve}
 								/>
 							</div>
 						</div>

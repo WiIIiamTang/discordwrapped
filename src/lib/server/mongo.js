@@ -96,7 +96,7 @@ export async function getUserPreferences(id) {
 			monitoruserpresencelog: true,
 			usersactivity: true,
 			usersmessages: true,
-			usersvoice: true,
+			usersachieve: true,
 			experimental: false
 		};
 		return { userid: id, settings };
@@ -124,6 +124,28 @@ export async function getArchivedStats(date) {
 	}
 
 	return stats.document;
+}
+
+export async function getAchievementSettings(id) {
+	const res = await _findOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'achievements',
+				guild: id
+			}
+		})
+	);
+
+	const settings = await res.json();
+
+	if (!settings.document) {
+		throw error(404, 'Achievment Settings not found');
+	}
+
+	return settings.document.achievements;
 }
 
 export async function getStatus() {

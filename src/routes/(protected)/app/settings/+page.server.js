@@ -20,7 +20,7 @@ export const actions = {
 			monitoruserpresencelog: data.get('monitoruserpresencelog'),
 			usersactivity: data.get('usersactivity'),
 			usersmessages: data.get('usersmessages'),
-			usersvoice: data.get('usersvoice'),
+			usersachieve: data.get('usersachieve'),
 			experimental: data.get('experimental')
 		};
 

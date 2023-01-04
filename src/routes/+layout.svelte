@@ -17,7 +17,7 @@
 	});
 
 	let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
-	$: if (browser && analyticsId) {
+	$: if (browser && analyticsId && PUBLIC_RUNTIME_ENV === 'PROD') {
 		webVitals({
 			path: $page.url.pathname,
 			params: $page.params,

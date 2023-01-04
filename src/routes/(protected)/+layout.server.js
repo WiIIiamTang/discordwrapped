@@ -14,7 +14,8 @@ import {
 	getWords,
 	getStatus,
 	getStatusTimeStream,
-	getVoiceState
+	getVoiceState,
+	getAchievementSettings
 } from '$lib/server/mongo.js';
 import {
 	processActivities,
@@ -80,6 +81,13 @@ export async function load({ locals }) {
 	// status logs
 	const status_logs = await getStatusTimeStream();
 
+	//bot
+	const waifu = await getWaifu();
+	const genshin = await getGenshin();
+	const wolfram = await getWolfram();
+	const openai = await getOpenai();
+	const audio = await getAudio();
+
 	return {
 		user: locals.user,
 		userPreferences: await getUserPreferences(locals.user.id),
@@ -100,6 +108,7 @@ export async function load({ locals }) {
 		popular_activities: processActivitiesPopular(activities_non_sorted_100),
 		trends_activities: processActivitiesTrends(activities_non_sorted_100, archive_week),
 		table_activities: processActivitiesUserTable(activities_sorted_total),
+		activities_raw: activities,
 		messages: await getMessages(),
 		voice: await getVoice(),
 		words: await processWords(await getWords()),
@@ -107,15 +116,23 @@ export async function load({ locals }) {
 		tracking_since: tracking_since_date,
 		interactions: await processInteractions(await getInteractions()),
 		botInteractions: processBotInteractions({
-			waifu: await getWaifu(),
-			genshin: await getGenshin(),
-			wolfram: await getWolfram(),
-			openai: await getOpenai(),
-			audio: await getAudio()
+			waifu: waifu,
+			genshin: genshin,
+			wolfram: wolfram,
+			openai: openai,
+			audio: audio
 		}),
+		botInteractions_raw: {
+			waifu: waifu,
+			genshin: genshin,
+			wolfram: wolfram,
+			openai: openai,
+			audio: audio
+		},
 		status: await getStatus(),
 		status_time_stream: processStatusLogs(status_logs, tracking_since_date),
 		status_logs_raw: processStatusLogsRaw(status_logs.count_by_users),
-		voiceState: await getVoiceState()
+		voiceState: await getVoiceState(),
+		achievementSettings: await getAchievementSettings(guild.id)
 	};
 }

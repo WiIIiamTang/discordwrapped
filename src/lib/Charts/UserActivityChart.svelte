@@ -1,11 +1,26 @@
 <script>
 	import { Bar } from 'svelte-chartjs';
-	export let data;
-	export let activity_limit;
+	export let current_selected_user;
+	export let activities;
 
-	$: get_activity_data = () => {
+	// console.log(activities);
+	// console.log(current_selected_user);
+
+	$: activities_user = Object.entries(activities)
+		.filter(([activity_name, objects]) => {
+			return Object.keys(objects).includes(current_selected_user);
+		})
+		.sort((a, b) => {
+			return b[1][current_selected_user] - a[1][current_selected_user];
+		})
+		.reduce((acc, [activity_name, objects]) => {
+			acc[activity_name] = objects[current_selected_user];
+			return acc;
+		}, {});
+
+	$: get_chart_data = () => {
 		return {
-			labels: data.labels.slice(0, activity_limit),
+			labels: Object.keys(activities_user),
 			datasets: [
 				{
 					label: 'hours',
@@ -26,7 +41,9 @@
 					pointHoverBorderWidth: 2,
 					pointRadius: 1,
 					pointHitRadius: 10,
-					data: data.totals.slice(0, activity_limit)
+					data: Object.values(activities_user).map((value) => {
+						return Math.round((value / 60) * 100) / 100;
+					})
 				}
 			]
 		};
@@ -34,9 +51,9 @@
 </script>
 
 <Bar
-	data={get_activity_data()}
+	data={get_chart_data()}
 	options={{
-		responsive: false,
+		responsive: true,
 		plugins: {
 			legend: {
 				display: false
@@ -46,6 +63,7 @@
 				text: 'Culmulative hours spent on activities'
 			}
 		},
-		maintainAspectRatio: true
+		maintainAspectRatio: true,
+		indexAxis: 'y'
 	}}
 />

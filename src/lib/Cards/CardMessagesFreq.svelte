@@ -4,7 +4,7 @@
 	export let data;
 	export let cloud = false;
 
-	let cachelife = 60 * 60; // 1hr
+	let cachelife = 60 * 30; // 0.5hr
 	let rendercloud = '';
 
 	onMount(async () => {

@@ -1,6 +1,5 @@
 <script>
 	import Codeblock from '$lib/Cards/Codeblock.svelte';
-	import sanitizeHtml from 'sanitize-html';
 </script>
 
 <section class="pb-20 pt-16 relative w-full h-full min-h-screen bg-neutral-200 -mt-24">
@@ -19,16 +18,6 @@
 					gistURL={'https://gist.github.com/WiIIiamTang/c960bdd82f9f62dbb3d32f9668eda210'}
 					title="Example"
 				/> -->
-				{@html sanitizeHtml(
-					'<svg xmlns="http://www.w3.org/2000/svg" width="500" height="300" font-family="Roboto" text-anchor="middle"><text font-size="15" transform="translate(261,112) rotate(6.070628704484573)" padding="2px" fill="#f200b2">hello</text><text font-size="15" transform="translate(212,142) rotate(-4.523426290044892)" padding="2px" fill="#00f2ea">world</text></svg>',
-					{
-						allowedTags: ['svg', 'text'],
-						allowedAttributes: {
-							svg: ['width', 'height', 'font-family', 'text-anchor'],
-							text: ['font-size', 'transform', 'padding', 'fill']
-						}
-					}
-				)}
 			</div>
 		</div>
 	</div>
