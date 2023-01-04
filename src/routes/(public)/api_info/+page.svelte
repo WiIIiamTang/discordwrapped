@@ -20,7 +20,7 @@
 				<p>
 					You <strong>must</strong> be authenticated (logged into Discord on this site) to use this api.
 					This means the cookies must be set in the request if you're using it elsewhere. For example,
-					if you're consuming this api in your script, you can set the cookies when posting:
+					if you're consuming this api in your script, you can set the cookies when sending the request:
 				</p>
 				<br />
 				<Codeblock
@@ -41,8 +41,9 @@
 				<br />
 				<p>
 					The limit of requests is <i>shared</i> across all endpoints, per minute. For example, if
-					you make 5 requests in a minute, you will be rate limited on <code>/data</code> endpoints,
-					but can still use <code>/admin</code>.
+					you make 11 requests in a minute to <code>/admin</code>, you will be rate limited on
+					<code>/data</code>
+					endpoints because it's over 4 per minute already.
 				</p>
 
 				<div class="mb-2 mt-10 pt-4 border-t-2 border-neutral-300">
