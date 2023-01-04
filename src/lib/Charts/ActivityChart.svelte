@@ -36,7 +36,7 @@
 <Bar
 	data={get_activity_data()}
 	options={{
-		responsive: false,
+		responsive: true,
 		plugins: {
 			legend: {
 				display: false
