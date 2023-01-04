@@ -9,14 +9,14 @@
 	dayjs.extend(utc);
 	dayjs.extend(tz);
 
-	let timezone;
+	export let timezone;
 
 	// convert the keys dates.
 	// TODO: select timezone from user preferences?
 	// TODO: can we do this in the parent component, where its already being done?
-	onMount(() => {
-		timezone = 'America/New_York';
-	});
+	// onMount(() => {
+	// 	timezone = 'America/New_York';
+	// });
 
 	$: data_logs = selected_user ? data.status_logs_raw[selected_user] : [];
 

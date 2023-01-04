@@ -41,35 +41,54 @@
 	export let data;
 
 	let timezone;
+	let submit_timezone;
 
 	// convert the keys dates.
 	// TODO: select timezone from user preferences?
 	onMount(() => {
 		timezone = 'America/New_York';
+		submit_timezone = timezone;
 	});
 
 	//console.log(data.status_time_stream);
 
-	let data_keys = Object.keys(data.status_time_stream).map((key) => {
-		return dayjs.utc(key).tz(timezone).format('MM/DD/YYYY HH:mm');
+	$: data_keys = Object.keys(data.status_time_stream).map((key) => {
+		return dayjs.utc(key).tz(submit_timezone).format('MM/DD/YYYY HH:mm');
 	});
 
 	// console.log(data_keys);
 
 	let start_key_index = 0;
-	let end_key_index = Object.keys(data_keys).length - 1;
+	let end_key_index = Object.keys(data.status_time_stream).length - 1;
 
 	let selected_user = '';
 	let view_mode = 'all';
+
+	function handleSubmitTimezone() {
+		submit_timezone = timezone;
+	}
 </script>
 
 <div class="pb-6">
 	<div class="flex flex-wrap">
 		<div class="w-full lg:w-12/12 px-4">
 			<div
-				class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-amber-100 border-0"
+				class="relative flex xl:flex-row flex-col justify-center items-center min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-amber-100 border-0"
 			>
-				<p class="text-center py-3">Timezone: America/New York</p>
+				{#if !data.userPreferences.settings.experimental}
+					<p class="text-center py-4">Timezone: America/New York</p>
+				{:else}
+					<p class="text-center py-4 mr-4 ml-2">Timezone:</p>
+					<input type="text" bind:value={timezone} />
+					<button class="ml-4 rounded shadow bg-amber-400 py-1 px-1" on:click={handleSubmitTimezone}
+						>Submit changes</button
+					>
+					<a
+						class="xl:ml-auto pr-2 text-blue-700 underline"
+						href="https://raw.githubusercontent.com/omsrivastava/timezones-list/master/dist/timezones.json"
+						>List of timezones</a
+					>
+				{/if}
 			</div>
 		</div>
 		{#if data.userPreferences.settings.monitoruserpresence}
@@ -154,7 +173,7 @@
 					</div>
 					<div class="p-4 flex-auto">
 						<div class="relative h-fit">
-							<CardPresenceLogs {data} {selected_user} {view_mode} />
+							<CardPresenceLogs {data} {selected_user} {view_mode} timezone={submit_timezone} />
 						</div>
 					</div>
 				</div>
