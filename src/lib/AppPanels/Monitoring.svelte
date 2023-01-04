@@ -85,6 +85,8 @@
 					>
 					<a
 						class="xl:ml-auto pr-2 text-blue-700 underline"
+						target="_blank"
+						rel="noopener noreferrer"
 						href="https://raw.githubusercontent.com/omsrivastava/timezones-list/master/dist/timezones.json"
 						>List of timezones</a
 					>

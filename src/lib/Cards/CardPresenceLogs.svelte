@@ -137,9 +137,16 @@
 				]}"
 			>
 				<p>
-					<span class="font-semibold">{selected_user}</span> changed their status: {log.status}
+					{#if view_mode !== 'compact'}
+						<span class="font-semibold">{selected_user}</span> changed their status: {log.status}
+					{:else}
+						{log.status}
+					{/if}
 				</p>
-				<p>Time registered: {dayjs.utc(log.time).tz(timezone).format('MM/DD/YYYY HH:mm')}</p>
+				<p>
+					{view_mode !== 'compact' ? 'Time registered:' : ''}
+					{dayjs.utc(log.time).tz(timezone).format('MM/DD/YYYY HH:mm')}
+				</p>
 			</div>
 			<div>
 				<!-- This computes the time between this log and the next -->
