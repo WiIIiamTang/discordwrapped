@@ -38,25 +38,64 @@ export function processStatusLogs(data, startdate, minutes = false) {
 				return acc;
 			}, {});
 
+		let timeline_deepcopy = JSON.parse(JSON.stringify(timeline));
+		const timeline_deepcopy2 = JSON.parse(JSON.stringify(timeline));
+
 		Object.values(user_logs).forEach((userlog) => {
 			// update the timeline hashmap with the user_logs data
 			const counter = {};
 			let rounded_date_key;
 
-			userlog.forEach((log) => {
-				const date_key = dayjs.utc(log.time);
+			userlog.forEach((log, i) => {
+				// const date_key = dayjs.utc(log.time);
 				// round the date_key to the nearest hour, because the timeline is hourly
-				rounded_date_key = date_key.startOf('hour').format();
-				if (!counter[rounded_date_key]) {
-					counter[rounded_date_key] = {
-						online: 0,
-						offline: 0,
-						idle: 0,
-						dnd: 0
-					};
-				}
+				// rounded_date_key = date_key.startOf('hour').format();
+				// if (!counter[rounded_date_key]) {
+				// 	counter[rounded_date_key] = {
+				// 		online: 0,
+				// 		offline: 0,
+				// 		idle: 0,
+				// 		dnd: 0
+				// 	};
+				// }
 
-				counter[rounded_date_key][log.status] += 1;
+				// counter[rounded_date_key][log.status] += 1;
+				if (i === 0) return;
+
+				const prev_log = userlog[i - 1];
+				const log_rounded_time = dayjs.utc(log.time).startOf('hour').format();
+
+				// if in same hour
+				if (log_rounded_time === dayjs.utc(prev_log.time).startOf('hour').format()) {
+					if (timeline_deepcopy[log_rounded_time]) {
+						timeline_deepcopy[log_rounded_time][prev_log.status] += dayjs
+							.utc(log.time)
+							.diff(dayjs.utc(prev_log.time), 'minute');
+					}
+				} else {
+					// if in different hour
+					const prev_log_rounded_time = dayjs.utc(prev_log.time).startOf('hour').format();
+					const hour_difference = dayjs
+						.utc(log_rounded_time)
+						.diff(dayjs.utc(prev_log_rounded_time), 'hour');
+
+					for (let j = 1; j < hour_difference; j++) {
+						const date_key = dayjs.utc(prev_log_rounded_time).add(j, 'hour').format();
+
+						if (timeline_deepcopy[date_key]) {
+							timeline_deepcopy[date_key][prev_log.status] += 60;
+						}
+					}
+
+					if (timeline_deepcopy[prev_log_rounded_time]) {
+						timeline_deepcopy[prev_log_rounded_time][prev_log.status] +=
+							60 - dayjs.utc(prev_log.time).minute();
+					}
+
+					if (timeline_deepcopy[log_rounded_time]) {
+						timeline_deepcopy[log_rounded_time][prev_log.status] += dayjs.utc(log.time).minute();
+					}
+				}
 			});
 
 			// Since users can have multiple statuses change within the same hour, we aggregate the statuses
@@ -64,24 +103,50 @@ export function processStatusLogs(data, startdate, minutes = false) {
 
 			// This is not acutally accurate since the user could have been online for 8 minutes and offline for 50 minutes
 			// and switch between online/dnd alot.
-			Object.entries(timeline).forEach(([date_key]) => {
-				if (!counter[date_key]) {
-					timeline[date_key].offline += 1;
+			// Object.entries(timeline).forEach(([date_key]) => {
+			// 	if (!counter[date_key]) {
+			// 		timeline[date_key].offline += 1;
+			// 		return;
+			// 	}
+
+			// 	// if everything in counter statuses is	0, then set to offline
+			// 	if (Object.values(counter[date_key]).every((val) => val === 0)) {
+			// 		timeline[date_key].offline += 1;
+			// 	} else {
+			// 		const max = Math.max(...Object.values(counter[date_key]));
+			// 		const status = Object.keys(counter[date_key]).find(
+			// 			(key) => counter[date_key][key] === max
+			// 		);
+
+			// 		timeline[date_key][status] += 1;
+			// 	}
+			// });
+
+			// go through the timeline and take the status with most minutes and set it as the status for that hour
+			Object.values(timeline_deepcopy).forEach((status_obj) => {
+				const most_minutes = Math.max(...Object.values(status_obj));
+				// if all statuses are 0, set offline to 1
+				if (most_minutes === 0) {
+					status_obj.offline = 1;
 					return;
 				}
-
-				// if everything in counter statuses is	0, then set to offline
-				if (Object.values(counter[date_key]).every((val) => val === 0)) {
-					timeline[date_key].offline += 1;
-				} else {
-					const max = Math.max(...Object.values(counter[date_key]));
-					const status = Object.keys(counter[date_key]).find(
-						(key) => counter[date_key][key] === max
-					);
-
-					timeline[date_key][status] += 1;
-				}
+				const most_minutes_status = Object.keys(status_obj).find(
+					(key) => status_obj[key] === most_minutes
+				);
+				Object.keys(status_obj).forEach((key) => {
+					status_obj[key] = key === most_minutes_status ? 1 : 0;
+				});
 			});
+
+			// copy timeline_deepcopy values to timeline
+			Object.entries(timeline_deepcopy).forEach(([date_key, status_obj]) => {
+				Object.entries(status_obj).forEach(([status, count]) => {
+					timeline[date_key][status] += count;
+				});
+			});
+
+			// reset timeline_deepcopy
+			timeline_deepcopy = JSON.parse(JSON.stringify(timeline_deepcopy2));
 		});
 	}
 	return timeline;
