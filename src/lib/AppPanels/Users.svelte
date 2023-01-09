@@ -3,6 +3,7 @@
 	import UserStatusChart from '$lib/Charts/UserStatusChart.svelte';
 	import UserMessageVoiceChart from '$lib/Charts/UserMessageVoiceChart.svelte';
 	import CardUserAchieve from '$lib/Cards/CardUserAchieve.svelte';
+	import UserPresenceHeatMapChart from '$lib/Charts/UserPresenceHeatMapChart.svelte';
 
 	export let data;
 	let current_selected_user = data.user.username;
@@ -140,5 +141,24 @@
 				</div>
 			</div>
 		{/if}
+		<div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
+			<div
+				class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-300"
+			>
+				<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+					<div class="flex flex-wrap items-center">
+						<div class="relative w-full max-w-full flex-grow flex-1">
+							<h6 class="uppercase text-black-100 mb-1 text-xs font-semibold">Users</h6>
+							<h2 class="text-black text-xl font-semibold">Presence Heatmap</h2>
+						</div>
+					</div>
+				</div>
+				<div class="p-4 flex-auto">
+					<div class="relative xl:h-[400px] h-[300px]">
+						<UserPresenceHeatMapChart {current_selected_user} {data} />
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
