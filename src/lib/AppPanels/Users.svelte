@@ -45,7 +45,7 @@
 </script>
 
 <div class="flex flex-wrap">
-	<div class="w-full lg:w-12/12 px-4">
+	<div class="w-full lg:w-12/12 px-4 sticky top-0 z-10">
 		<div
 			class="relative flex flex-row py-4 justify-center gap-2 min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-300 border-0"
 		>
