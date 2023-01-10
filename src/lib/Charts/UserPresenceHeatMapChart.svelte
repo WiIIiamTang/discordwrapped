@@ -250,7 +250,22 @@
 			responsive: true,
 			scales: {
 				x: { stacked: true },
-				y: { stacked: true, display: false }
+				y: {
+					stacked: true,
+					display: true,
+					ticks: {
+						callback: function (value, index, ticks) {
+							if (index === 7) {
+								return '';
+							}
+							return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][
+								index % 7
+							];
+						},
+						padding: 1,
+						count: 8
+					}
+				}
 			},
 			maintainAspectRatio: false,
 			plugins: {
