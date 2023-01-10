@@ -59,6 +59,8 @@ export function processStatusLogs(data, startdate, minutes = false) {
 				// 	};
 				// }
 
+				// TODO: skip log if its older than a month??
+
 				// counter[rounded_date_key][log.status] += 1;
 				if (i === 0) return;
 
