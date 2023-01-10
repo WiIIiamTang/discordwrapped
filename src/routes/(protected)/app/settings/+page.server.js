@@ -21,6 +21,7 @@ export const actions = {
 			usersactivity: data.get('usersactivity'),
 			usersmessages: data.get('usersmessages'),
 			usersachieve: data.get('usersachieve'),
+			usersheatmap: data.get('usersheatmap'),
 			experimental: data.get('experimental')
 		};
 

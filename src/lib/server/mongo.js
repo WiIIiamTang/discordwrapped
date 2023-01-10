@@ -222,6 +222,7 @@ export async function getUserPreferences(id) {
 			usersactivity: true,
 			usersmessages: true,
 			usersachieve: true,
+			usersheatmap: true,
 			experimental: false
 		};
 		return { userid: id, settings };
