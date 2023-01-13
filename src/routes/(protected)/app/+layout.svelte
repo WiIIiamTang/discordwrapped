@@ -22,6 +22,10 @@
 			voice_stats_week_ago={data.archived_stats_week_ago.voice}
 		/>
 		<div class="px-4 md:px-10 mx-auto w-full -m-24">
+			<!-- <div
+				class="absolute top-0 z-50 text-4xl font-bold bg-repeat h-full w-[90%] pointer-events-none opacity-10"
+				style="background-image: url(/DEMO.png)"
+			/> -->
 			{#if $navigating && $navigating.to.url.pathname.startsWith('/app') && $navigating.from.url.pathname.startsWith('/app')}
 				<div class="w-full h-full flex justify-center items-center overflow-hidden">
 					<LoadingApp duration={'0.5s'} />
