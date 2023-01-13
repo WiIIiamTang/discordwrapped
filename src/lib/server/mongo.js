@@ -188,6 +188,62 @@ export async function updateUserPreferences(id, settings) {
 	return true;
 }
 
+export async function insertAchievement(id, achievement) {
+	const res = await _updateOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'achievements',
+				guild: id
+			},
+			update: {
+				$push: {
+					achievements: achievement
+				}
+			},
+			upsert: true
+		})
+	);
+
+	const response = await res.json();
+
+	if (!response.matchedCount && !response.upsertedId) {
+		return false;
+	}
+
+	return true;
+}
+
+export async function deleteAchievement(id, achievement) {
+	const res = await _updateOne(
+		JSON.stringify({
+			collection: 'config',
+			database: 'billbot',
+			dataSource: 'Cluster0',
+			filter: {
+				setting: 'achievements',
+				guild: id
+			},
+			update: {
+				$pull: {
+					achievements: achievement
+				}
+			},
+			upsert: true
+		})
+	);
+
+	const response = await res.json();
+
+	if (!response.matchedCount && !response.upsertedId) {
+		return false;
+	}
+
+	return true;
+}
+
 ///////////////////////////////////////////////////////////////////
 
 export async function getUserPreferences(id) {
