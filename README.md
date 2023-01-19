@@ -4,7 +4,7 @@ Displays various stats about your Discord server in an easy to use dashboard.
 
 Sveltekit, tailwindcss, redis
 
-mongodb data api for retrieving stats (legacy, data api source is being moved to [fleet](https://github.com/WiIIiamTang/fleet))
+MongoDB, MongoDB data api for retrieving stats (legacy, data api source is being moved to [fleet](https://github.com/WiIIiamTang/fleet))
 
 ---
 
