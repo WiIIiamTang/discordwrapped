@@ -7,13 +7,15 @@
 	import { navigating } from '$app/stores';
 	import LoadingApp from '$lib/Spinners/LoadingApp.svelte';
 
+	import FleetWidget from '$lib/Fleet/FleetWidget.svelte';
+
 	export let data = {};
 </script>
 
 <div>
-	<AppSidebar guilds={data.bot_guilds} preferences={data.userPreferences} />
+	<AppSidebar guilds={data.bot_guilds} preferences={data.userPreferences} isDemo={true} />
 	<div class="relative md:ml-64 bg-slate-100">
-		<AppNavbar guilds={data.bot_guilds} since_date={data.tracking_since} />
+		<AppNavbar guilds={data.bot_guilds} since_date={data.tracking_since} isDemo={true} />
 		<HeaderStats
 			guilds={data.bot_guilds}
 			messages_stats={data.messages}
@@ -43,3 +45,4 @@
 		</div>
 	</div>
 </div>
+<FleetWidget discordAccountId={'123'} username={'DEMO'} connected={false} version={'DEMO'} />

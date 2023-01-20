@@ -6,8 +6,9 @@
 
 	let cachelife = 60 * 30; // 0.5hr
 	let rendercloud = '';
-
+	$: console.log('cached', data, rendercloud);
 	onMount(async () => {
+		console.log('mounting now..');
 		let cached = localStorage.getItem('rendercloud');
 		let expired = true;
 
@@ -19,6 +20,7 @@
 		if (cached && !expired) {
 			rendercloud = cached.rendercloud;
 		} else {
+			console.log('getting new cloud');
 			const text = data
 				.filter((word) => !word[0].startsWith('tenor.com'))
 				.map((word) => {

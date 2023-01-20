@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 
 	export let data;
+	export let isDemo;
 
 	let form_data = {};
 
@@ -102,18 +103,20 @@
 							<div class="relative w-full mb-3">
 								<p class="block uppercase text-slate-600 text-xs font-bold mb-2">Avatar</p>
 								<div>
-									{#if data.user.avatar}
-										<img
-											class="rounded-full w-12 h-12 align-middle border-none shadow-lg"
-											alt="user avatar profile pic"
-											src={`https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.png`}
-										/>
-									{:else}
-										<img
-											class="rounded-full w-12 h-12 align-middle border-none shadow-lg"
-											alt="user avatar placeholder pic"
-											src="/placeholder.png"
-										/>
+									{#if !isDemo}
+										{#if data.user.avatar}
+											<img
+												class="rounded-full w-12 h-12 align-middle border-none shadow-lg"
+												alt="user avatar profile pic"
+												src={`https://cdn.discordapp.com/avatars/${data.user.id}/${data.user.avatar}.png`}
+											/>
+										{:else}
+											<img
+												class="rounded-full w-12 h-12 align-middle border-none shadow-lg"
+												alt="user avatar placeholder pic"
+												src="/placeholder.png"
+											/>
+										{/if}
 									{/if}
 								</div>
 							</div>
@@ -470,17 +473,19 @@
 					</div>
 					<hr class="mt-6 border-b-1 border-slate-300" />
 
-					<div class="flex flex-wrap">
-						<div class="w-full lg:w-12/12 px-4">
-							<div class="relative w-full my-3 flex justify-center">
-								<button
-									type="submit"
-									class="bg-indigo-300 mt-5 w-1/2 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-4 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
-									><p class="text-slate-800">Save settings</p></button
-								>
+					{#if !isDemo}
+						<div class="flex flex-wrap">
+							<div class="w-full lg:w-12/12 px-4">
+								<div class="relative w-full my-3 flex justify-center">
+									<button
+										type="submit"
+										class="bg-indigo-300 mt-5 w-1/2 text-slate-700 active:bg-slate-50 text-xs font-bold uppercase px-4 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
+										><p class="text-slate-800">Save settings</p></button
+									>
+								</div>
 							</div>
 						</div>
-					</div>
+					{/if}
 				</form>
 			</div>
 		</div>

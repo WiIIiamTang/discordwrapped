@@ -4,6 +4,7 @@
 
 	export let guilds;
 	export let since_date;
+	export let isDemo = false;
 </script>
 
 <!-- Navbar -->
@@ -30,7 +31,7 @@
 		{/if}
 		<ul class="flex-col md:flex-row list-none items-center hidden md:flex">
 			{#if guilds && guilds.current}
-				<ProfilesDropdown {guilds} />
+				<ProfilesDropdown {guilds} {isDemo} />
 			{/if}
 		</ul>
 	</div>

@@ -1,4 +1,6 @@
 <script>
 	import Activities from '$lib/AppPanels/Activities.svelte';
-	export let data = {};
+	export let data;
 </script>
+
+<Activities {data} />

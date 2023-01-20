@@ -2,6 +2,7 @@
 	import { Doughnut } from 'svelte-chartjs';
 	export let current_selected_user;
 	export let status;
+
 	$: status_total =
 		current_selected_user && status.count_by_users[current_selected_user]
 			? Object.values(status.count_by_users[current_selected_user]).reduce((acc, value) => {

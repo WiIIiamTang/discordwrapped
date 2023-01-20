@@ -3,7 +3,8 @@
 	import Footer from '$lib/Footers/Footer.svelte';
 
 	function handleDemoClick() {
-		alert('Demo is currently unavailable.');
+		// alert('Demo is currently unavailable.');
+		window.location.href = '/demo/app';
 	}
 
 	export let data;

@@ -50,8 +50,6 @@
 		submit_timezone = timezone;
 	});
 
-	//console.log(data.status_time_stream);
-
 	$: data_keys = Object.keys(data.status_time_stream).map((key) => {
 		return dayjs.utc(key).tz(submit_timezone).format('MM/DD/YYYY HH:mm');
 	});

@@ -2,6 +2,8 @@
 	import ProfilesDropdown from '$lib/Dropdowns/ProfilesDropdown.svelte';
 	import { page } from '$app/stores';
 
+	export let isDemo = false;
+
 	let collapseShow = 'hidden';
 
 	function toggleCollapseShow(classes) {
@@ -10,8 +12,8 @@
 
 	let activeRoute = $page.url.pathname;
 
-	if (activeRoute === '/app') {
-		activeRoute = '/app/activities';
+	if (activeRoute === `${isDemo ? '/demo' : ''}/app`) {
+		activeRoute = `${isDemo ? '/demo' : ''}/app/activities`;
 	}
 
 	export let guilds;
@@ -35,7 +37,7 @@
 		<!-- Brand -->
 		<a
 			class="md:block text-left md:pb-2 text-black mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-			href="/app/activities"
+			href={`${isDemo ? '/demo' : ''}/app/activities`}
 		>
 			DiscordWrapped
 		</a>
@@ -87,16 +89,18 @@
 			<ul class="md:flex-col md:min-w-full flex flex-col list-none">
 				<li class="items-center">
 					<a
-						href="/app/activities"
-						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/activities'
+						href={`${isDemo ? '/demo' : ''}/app/activities`}
+						class="text-xs uppercase py-3 font-bold block {activeRoute ===
+						`${isDemo ? '/demo' : ''}/app/activities`
 							? 'text-indigo-800 hover:text-indigo-600'
 							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
-							activeRoute = '/app/activities';
+							activeRoute = `${isDemo ? '/demo' : ''}/app/activities`;
 						}}
 					>
 						<i
-							class="fas fa-tv mr-2 text-sm {activeRoute === '/app/activities'
+							class="fas fa-tv mr-2 text-sm {activeRoute ===
+							`${isDemo ? '/demo' : ''}/app/activities`
 								? 'opacity-75'
 								: 'text-slate-300'}"
 						/>
@@ -106,16 +110,18 @@
 
 				<li class="items-center">
 					<a
-						href="/app/interactions"
-						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/interactions'
+						href={`${isDemo ? '/demo' : ''}/app/interactions`}
+						class="text-xs uppercase py-3 font-bold block {activeRoute ===
+						`${isDemo ? '/demo' : ''}/app/interactions`
 							? 'text-indigo-800 hover:text-indigo-600'
 							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
-							activeRoute = '/app/interactions';
+							activeRoute = `${isDemo ? '/demo' : ''}/app/interactions`;
 						}}
 					>
 						<i
-							class="fa-regular fa-map mr-2 text-sm {activeRoute === '/app/interactions'
+							class="fa-regular fa-map mr-2 text-sm {activeRoute ===
+							`${isDemo ? '/demo' : ''}/app/interactions`
 								? 'opacity-75'
 								: 'text-slate-300'}"
 						/>
@@ -125,16 +131,18 @@
 
 				<li class="items-center">
 					<a
-						href="/app/messages"
-						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/messages'
+						href={`${isDemo ? '/demo' : ''}/app/messages`}
+						class="text-xs uppercase py-3 font-bold block {activeRoute ===
+						`${isDemo ? '/demo' : ''}/app/messages`
 							? 'text-indigo-800 hover:text-indigo-600'
 							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
-							activeRoute = '/app/messages';
+							activeRoute = `${isDemo ? '/demo' : ''}/app/messages`;
 						}}
 					>
 						<i
-							class="fa-solid fa-list-check mr-2 text-sm {activeRoute === '/app/messages'
+							class="fa-solid fa-list-check mr-2 text-sm {activeRoute ===
+							`${isDemo ? '/demo' : ''}/app/messages`
 								? 'opacity-75'
 								: 'text-slate-300'}"
 						/>
@@ -144,17 +152,18 @@
 
 				<li class="items-center">
 					<a
-						href="/app/monitoring"
-						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/monitoring'
+						href={`${isDemo ? '/demo' : ''}/app/monitoring`}
+						class="text-xs uppercase py-3 font-bold block {activeRoute ===
+						`${isDemo ? '/demo' : ''}/app/monitoring`
 							? 'text-indigo-800 hover:text-indigo-600'
 							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
-							activeRoute = '/app/monitoring';
+							activeRoute = `${isDemo ? '/demo' : ''}/app/monitoring`;
 						}}
 					>
 						<i
 							class="fa-solid fa-magnifying-glass-chart mr-2 text-sm {activeRoute ===
-							'/app/monitoring'
+							`${isDemo ? '/demo' : ''}/app/monitoring`
 								? 'opacity-75'
 								: 'text-slate-300'}"
 						/>
@@ -164,16 +173,18 @@
 
 				<li class="items-center">
 					<a
-						href="/app/users"
-						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/users'
+						href={`${isDemo ? '/demo' : ''}/app/users`}
+						class="text-xs uppercase py-3 font-bold block {activeRoute ===
+						`${isDemo ? '/demo' : ''}/app/users`
 							? 'text-indigo-800 hover:text-indigo-600'
 							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
-							activeRoute = '/app/users';
+							activeRoute = `${isDemo ? '/demo' : ''}/app/users`;
 						}}
 					>
 						<i
-							class="fa-solid fa-people-arrows mr-2 text-sm {activeRoute === '/app/users'
+							class="fa-solid fa-people-arrows mr-2 text-sm {activeRoute ===
+							`${isDemo ? '/demo' : ''}/app/users`
 								? 'opacity-75'
 								: 'text-slate-300'}"
 						/>
@@ -184,16 +195,18 @@
 				{#if preferences.settings.experimental}
 					<li class="items-center">
 						<a
-							href="/app/download"
-							class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/download'
+							href={`${isDemo ? '/demo' : ''}/app/download`}
+							class="text-xs uppercase py-3 font-bold block {activeRoute ===
+							`${isDemo ? '/demo' : ''}/app/download`
 								? 'text-indigo-800 hover:text-indigo-600'
 								: 'text-slate-800 hover:text-slate-500'}"
 							on:click={() => {
-								activeRoute = '/app/download';
+								activeRoute = `${isDemo ? '/demo' : ''}/app/download`;
 							}}
 						>
 							<i
-								class="fa-solid fa-download mr-2 text-sm {activeRoute === '/app/download'
+								class="fa-solid fa-download mr-2 text-sm {activeRoute ===
+								`${isDemo ? '/demo' : ''}/app/download`
 									? 'opacity-75'
 									: 'text-slate-300'}"
 							/>
@@ -204,16 +217,18 @@
 
 				<li class="items-center">
 					<a
-						href="/app/settings"
-						class="text-xs uppercase py-3 font-bold block {activeRoute === '/app/settings'
+						href={`${isDemo ? '/demo' : ''}/app/settings`}
+						class="text-xs uppercase py-3 font-bold block {activeRoute ===
+						`${isDemo ? '/demo' : ''}/app/settings`
 							? 'text-indigo-800 hover:text-indigo-600'
 							: 'text-slate-800 hover:text-slate-500'}"
 						on:click={() => {
-							activeRoute = '/app/settings';
+							activeRoute = `${isDemo ? '/demo' : ''}/app/settings`;
 						}}
 					>
 						<i
-							class="fa-solid fa-gear mr-2 text-sm {activeRoute === '/app/settings'
+							class="fa-solid fa-gear mr-2 text-sm {activeRoute ===
+							`${isDemo ? '/demo' : ''}/app/settings`
 								? 'opacity-75'
 								: 'text-slate-300'}"
 						/>

@@ -6,6 +6,8 @@
 	let btnDropdownRef;
 	let popoverDropdownRef;
 
+	export let isDemo = false;
+
 	const toggleDropdown = (event) => {
 		event.preventDefault();
 		if (dropdownPopoverShow) {
@@ -63,13 +65,15 @@
 			</a>
 		{/each}
 		<div class="h-0 border border-solid border-slate-100 flex justify-center" />
-		<form method="POST" action="/logout" class="flex justify-center">
-			<button
-				class="bg-indigo-300 my-2 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
-				type="submit"
-			>
-				Logout
-			</button>
-		</form>
+		{#if !isDemo}
+			<form method="POST" action="/logout" class="flex justify-center">
+				<button
+					class="bg-indigo-300 my-2 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-2 mb-1 ease-linear transition-all duration-150"
+					type="submit"
+				>
+					Logout
+				</button>
+			</form>
+		{/if}
 	</div>
 </div>
