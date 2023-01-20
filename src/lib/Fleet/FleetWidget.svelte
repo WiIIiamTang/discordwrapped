@@ -46,9 +46,9 @@
 			{#if version}
 				<p>{version}</p>
 			{/if}
-			<p>
+			<!-- <p>
 				<a href="https://fleet.williamtang.me"> fleet.williamtang.me </a>
-			</p>
+			</p> -->
 		</div>
 	</div>
 </div>
