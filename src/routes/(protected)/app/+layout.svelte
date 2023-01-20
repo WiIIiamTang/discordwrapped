@@ -7,6 +7,8 @@
 	import { navigating } from '$app/stores';
 	import LoadingApp from '$lib/Spinners/LoadingApp.svelte';
 
+	import FleetWidget from '$lib/Fleet/FleetWidget.svelte';
+
 	export let data;
 </script>
 
@@ -43,3 +45,9 @@
 		</div>
 	</div>
 </div>
+<FleetWidget
+	discordAccountId={data.user.id}
+	username={data.user.username}
+	connected={data.connectedFleet}
+	version={data.apiVersion}
+/>

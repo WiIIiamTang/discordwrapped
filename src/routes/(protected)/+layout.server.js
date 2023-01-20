@@ -29,6 +29,7 @@ import {
 	processStatusLogs,
 	processStatusLogsRaw
 } from '$lib/server/stats.js';
+import { connectUsertoService, getApiVersion } from '$lib/server/fleet';
 import { getGuildInfo, getGuildMembers } from '$lib/server/auth';
 import { getLatestDeploymentDate } from '$lib/server/vercel';
 import { RUNTIME_ENV } from '$env/static/private';
@@ -90,6 +91,8 @@ export async function load({ locals }) {
 
 	return {
 		user: locals.user,
+		connectedFleet: await connectUsertoService(locals.user.id, locals.user.username),
+		apiVersion: await getApiVersion(),
 		userPreferences: await getUserPreferences(locals.user.id),
 		latestDeployment:
 			RUNTIME_ENV === 'DEV' ? { date: 'local', sha: 'dev' } : await getLatestDeploymentDate(),
