@@ -50,4 +50,5 @@
 	username={data.user.username}
 	connected={data.connectedFleet}
 	version={data.apiVersion}
+	notifications={data.fleetNotifications}
 />

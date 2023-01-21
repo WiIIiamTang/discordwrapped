@@ -14,6 +14,7 @@ export async function load() {
 		},
 		connectedFleet: false,
 		apiVersion: '1.0.0',
+		fleetNotifications: [],
 		userPreferences: {
 			settings: {
 				activityguildtotals: true,

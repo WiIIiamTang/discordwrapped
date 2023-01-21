@@ -39,3 +39,7 @@ body .gist .gist-meta {
 body .gist .gist-data .file {
 	margin: 0;
 }
+
+#fleet-widget {
+	@apply shadow-md bg-white backdrop-blur-md;
+}

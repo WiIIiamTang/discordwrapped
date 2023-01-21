@@ -50,3 +50,26 @@ export const getApiVersion = async () => {
 
 	return rjson.version;
 };
+
+export const getUserNotifications = async (discordAccountId) => {
+	let fleetResponse;
+
+	try {
+		fleetResponse = await fetch(
+			`${FLEET_API_BASE_URL}/fleet/notifications?discordAccountId=${discordAccountId}`,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${FLEET_AUTH_TOKEN}`
+				}
+			}
+		);
+	} catch (error) {
+		console.error(error); // server-side log
+	}
+
+	const rjson = await fleetResponse.json();
+
+	return rjson.notifications;
+};
