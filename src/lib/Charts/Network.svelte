@@ -44,34 +44,34 @@
 				.filter((link) => link.source == d.id || link.target == d.id)
 				.map((link) => link.value)
 				.reduce((a, b) => a + Math.sqrt(b), 0),
-			2.1
+			2
 		);
 		return Object.create(d);
 	});
 
 	function groupColour(context, d) {
-		let nodesize = 2 + Math.sqrt(d.size) / 5;
-		let radgrad = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize);
+		let nodesize = Math.sqrt(d.size) / 5;
+		let radgrad = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize / 1.3);
 		radgrad.addColorStop(0, '#01abfc');
 		radgrad.addColorStop(0.1, '#01abfc');
 		radgrad.addColorStop(1, '#01abfc00');
 
-		let radgrad2 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize);
+		let radgrad2 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize / 1.3);
 		radgrad2.addColorStop(0, '#7A17F6');
 		radgrad2.addColorStop(0.1, '#7A17F6');
 		radgrad2.addColorStop(1, '#7A17F600');
 
-		let radgrad3 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize);
+		let radgrad3 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize / 1.3);
 		radgrad3.addColorStop(0, '#B635E3');
 		radgrad3.addColorStop(0.1, '#B635E3');
 		radgrad3.addColorStop(1, '#B635E300');
 
-		let radgrad4 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize);
+		let radgrad4 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize / 1.3);
 		radgrad4.addColorStop(0, '#E4158B');
 		radgrad4.addColorStop(0.1, '#E4158B');
 		radgrad4.addColorStop(1, '#E4158B00');
 
-		let radgrad5 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize);
+		let radgrad5 = context.createRadialGradient(d.x, d.y, nodesize / 3, d.x, d.y, nodesize / 1.3);
 		radgrad4.addColorStop(0, '#F9123B');
 		radgrad4.addColorStop(0.1, '#F9123B');
 		radgrad4.addColorStop(1, '#F9123B00');
@@ -94,7 +94,24 @@
 				d3
 					.forceLink(links)
 					.id((d) => d.id)
-					.distance((d) => 3.5 + Math.sqrt(max) / 4 + 400 * Math.pow(2, -d.value / 1000))
+					.distance((d) => {
+						// distance should be inversely proportional to the value of the link
+						const base_distance_value = 350;
+
+						// how close do want people who interact a lot to be?
+						// this will cap out at some softmax value; exponential 2^{-x} approaching 1 as you increase x.
+						const close_multiplier = max_value_in_data - min_value_in_data; // lower = closer, higher = further
+
+						// how strong should the effect of the inverse value be?
+						const value_multiplier = 15; // lower = stronger (further) , higher = weaker (closer)
+
+						return (
+							base_distance_value * // base value for distance * (some fraction of it)
+								Math.pow(2, -(d.value / close_multiplier)) +
+							// adds on a value that is inversely proportional to the value of the link
+							max_value_in_data / d.value / value_multiplier
+						);
+					})
 			)
 			.force('charge', d3.forceManyBody())
 			.force('center', d3.forceCenter(width / 2, height / 2))
@@ -154,8 +171,8 @@
 			context.strokeStyle = '#FFFFFF';
 			context.lineWidth =
 				Math.max(
-					((d.value - min_value_in_data) / (max_value_in_data - min_value_in_data)) * 1.8,
-					0.05
+					((d.value - min_value_in_data) / (max_value_in_data - min_value_in_data)) * 1.9,
+					0.01
 				) * 3;
 			context.stroke();
 			context.globalAlpha = 1;

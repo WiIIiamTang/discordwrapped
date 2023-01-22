@@ -56,7 +56,7 @@
 
 	// console.log(data_keys);
 
-	let start_key_index = 0;
+	let start_key_index = Object.keys(data.status_time_stream).length - 24 * 7;
 	let end_key_index = Object.keys(data.status_time_stream).length - 1;
 
 	let selected_user = '';
