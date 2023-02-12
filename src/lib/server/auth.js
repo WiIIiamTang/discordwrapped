@@ -51,6 +51,8 @@ export async function getDiscordAuth(code, refresh) {
 				scope: DISCORD_SCOPE
 		  };
 
+	console.log(body);
+
 	const response = await fetch('https://discord.com/api/oauth2/token', {
 		method: 'POST',
 		body: new URLSearchParams(body),
@@ -60,6 +62,8 @@ export async function getDiscordAuth(code, refresh) {
 	});
 
 	const data = await response.json();
+	console.log(data);
+
 	if (data.error) {
 		throw error(400, `Discord error while fetching token: ${data.error}`);
 	}
