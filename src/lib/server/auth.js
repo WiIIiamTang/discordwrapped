@@ -232,5 +232,7 @@ export async function getUserById(id) {
 	if (user.id) {
 		return user;
 	}
-	return null;
+
+	console.log('user not found ', id);
+	return { username: 'none' };
 }
