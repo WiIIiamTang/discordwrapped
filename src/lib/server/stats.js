@@ -172,11 +172,11 @@ export async function processWords(data) {
 			.sort((a, b) => b[1] - a[1])
 			.filter((word) => !stopwords.includes(word[0]))
 			.slice(0, 100)
-			.map(async (word) =>
-				word[0].length === 18 && !isNaN(word[0])
-					? [`@${(await getUserById(word[0])).username}`, word[1]]
-					: word
-			)
+		// .map(async (word) =>
+		// 	word[0].length === 18 && !isNaN(word[0])
+		// 		? [`@${(await getUserById(word[0])).username}`, word[1]]
+		// 		: word
+		// )
 	);
 	return sorted;
 }
